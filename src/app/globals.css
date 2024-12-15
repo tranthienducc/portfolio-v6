@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --font-family-bigger: "Bigger Display";
+}
+
+@font-face {
+  font-family: "Pangaia";
+  src: url("./fonts/Pangaia/PPPangaia-BoldItalic-BF654c530c8d2fa.otf")
+    format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Bigger Display";
+  src: url("./fonts/BiggerDisplay/BiggerDisplay.otf") format("opentype");
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Approach Trial";
+  src: url("./fonts/ApproachTrial/ApproachTRIAL-Lt.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Approach Trial";
+  src: url("./fonts/ApproachTrial/ApproachTRIAL-Rg.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Approach Trial";
+  src: url("./fonts/ApproachTrial/ApproachTRIAL-Md.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Approach Trial";
+  src: url("./fonts/ApproachTrial/ApproachTRIAL-SmBd.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+@layer base {
+  body {
+    @apply text-white max-w-[1920px] h-screen bg-[#000] font-ApproachTrial;
+  }
+}
+
+@layer components {
+  .font-size-custom {
+    font: 700 min(14vw, 18.5rem) / 0.8 var(--font-family-bigger);
+  }
+  .padding-custom {
+    padding: 8vh 12.5% 13vh 8.33%;
+  }
+  .paragraph {
+    font-size: max(20px, 2.9vw);
+  }
+}

@@ -76,4 +76,99 @@
   .paragraph {
     font-size: max(20px, 2.9vw);
   }
+  .burger {
+    width: 100%;
+  }
+  .burger::after,
+  .burger::before {
+    content: "";
+    display: block;
+    width: 40%;
+    background-color: black;
+    height: 2px;
+    margin: auto;
+    position: relative;
+    transition: transform 0.3s;
+  }
+  .burger::after {
+    top: -5px;
+  }
+  .burger::before {
+    top: 5px;
+  }
+  .burgerActive::after {
+    transform: rotate(45deg);
+    top: -1px;
+  }
+  .burgerActive::before {
+    transform: rotate(-45deg);
+    top: 0px;
+  }
+  .linkContainer {
+    perspective: 120px;
+    perspective-origin: bottom;
+  }
+  .project {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 100px 50px 100px;
+    border-top: 1px solid rgb(255 255 255 / 0.15);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .project:last-of-type {
+    border-bottom: 1px solid rgb(255 255 255 / 0.15);
+  }
+
+  .project:hover {
+    opacity: 0.5;
+  }
+
+  .project:hover h2 {
+    transform: translateX(-10px);
+  }
+
+  .project:hover p {
+    transform: translateX(10px);
+  }
+
+  .project h2 {
+    font-size: 60px;
+    margin: 0px;
+    font-weight: 400;
+    transition: all 0.4s;
+  }
+
+  .project p {
+    transition: all 0.4s;
+    font-weight: 300;
+  }
+  .modalSlider {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    transition: top 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+  .cursor,
+  .cursorLabel {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #455ce9;
+    color: white;
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 300;
+    pointer-events: none;
+  }
+
+  .cursorLabel {
+    background-color: transparent;
+  }
 }

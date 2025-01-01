@@ -1,4 +1,4 @@
-import { About, Hero } from "@/components/shared";
+import { About, Hero, Work } from "@/components/shared";
 
 export default function Home() {
   return (
@@ -6,6 +6,7 @@ export default function Home() {
       <div className="absolute inset-0 z-0 bg-center bg-cover bg-hero-pattern rounded-xl m-[15px]"></div>
       <Hero />
       <About />
+      <Work />
     </div>
   );
 }

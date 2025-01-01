@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { Header } from "@/components/shared";
 import Wrapper from "@/components/Wrapper";
 
 const approachTrial = localFont({
@@ -35,10 +34,7 @@ export default function RootLayout({
       <body
         className={`${approachTrial.variable} ${biggerDisplay.variable} antialiased`}
       >
-        <Wrapper>
-          <Header />
-          {children}
-        </Wrapper>
+        <Wrapper>{children}</Wrapper>
       </body>
     </html>
   );

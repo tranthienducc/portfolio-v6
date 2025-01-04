@@ -35,3 +35,22 @@ export const footerLinks = [
     href: "/",
   },
 ];
+
+export const social = [
+  {
+    label: "awwwards",
+    link: "https://www.awwwards.com/tran-thien-duc/",
+  },
+  {
+    label: "instagram",
+    link: "https://www.awwwards.com/tran-thien-duc/",
+  },
+  {
+    label: "twitter",
+    link: "https://www.awwwards.com/tran-thien-duc/",
+  },
+  {
+    label: "facebook",
+    link: "https://www.awwwards.com/tran-thien-duc/",
+  },
+];

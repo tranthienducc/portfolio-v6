@@ -1,23 +1,10 @@
-import Marquee from "@/components/animation/marquee/Marquee";
-import IconsStar from "@/components/icons/IconsStar";
-
-import {
-  Construction,
-  Dumbbell,
-  Earth,
-  HandMetal,
-  Heart,
-  Laptop,
-  Smile,
-  SquareDashedBottomCode,
-  Sun,
-} from "lucide-react";
+// import Marquee from "@/components/animation/marquee/Marquee";
+import IconsArrowDown from "@/components/icons/IconsArrowDown";
 import Image from "next/image";
-import Link from "next/link";
 
 const About = () => {
   return (
-    <div className="mb-[20rem] w-full max-w-full">
+    <section className="mb-[20rem] w-full max-w-full px-12 py-10">
       <p className="text-[33.2px] leading-[41.4px] font-normal mx-auto text-center max-w-[877px] w-full mb-[168px] text-[#999]">
         We deliver top-tier research, strategy, creative assets and execution
         for industry-leading brands. Our approach blends innovation, AI and
@@ -26,103 +13,85 @@ const About = () => {
         objectives.
       </p>
 
-      <div className="w-full mb-[168px]">
-        <Marquee />
-      </div>
+      <div className="w-full mb-[168px]">{/* <Marquee /> */}</div>
 
-      <div className="max-w-full w-full padding-custom">
-        <p className="will-change-transform mb-20 paragraph text-white/70">
-          <span className="flex flex-row items-center gap-3">
-            <span>I’m Thien Duc, I work as a</span>
-            <Sun size={35} />
-            <span className="underline text-white">front</span>
-            <span>
-              <Earth className="w-[50px] h-[34px]" />
+      <div className="lg:gap-y-space-2xl gap-y-space-lg flex flex-col">
+        <div className="custom-grid">
+          <IconsArrowDown />
+          <h2 className="section-heading relative z-30 col-span-full flex w-full flex-col leading-none text-[#d1d1c7] mix-blend-exclusion lg:col-span-7 lg:col-start-6 text-[121.531px] font-semibold">
+            <span
+              aria-hidden="true"
+              className="leading-[121.531px] tracking-[-3.03827px]"
+            >
+              Designer,
             </span>
-            <span>end developer</span>
-          </span>
-          <span className="flex  flex-row items-center gap-3">
-            <span>specialized in the conception of </span>
-            <span className="italic text-white">custom</span>
-            <span>and unique</span>
-          </span>
-          <span className="flex items-center ">
-            <span className="underline">website.</span> <span> I love</span>
-            <span>
-              <Heart className="w-[50px] h-[34px]" />
+            <span
+              aria-hidden="true"
+              className="leading-[121.531px] tracking-[-3.03827px]"
+            >
+              Developer,
             </span>
-            <span>designing interfaces with a beautiful</span>
-          </span>
-          <span className="flex items-center">
-            <span>and</span>
-            <span>
-              <Dumbbell className="w-[50px] h-[34px]" />
+            <span
+              aria-hidden="true"
+              className="leading-[121.531px] tracking-[-3.03827px]"
+            >
+              Creator /
             </span>
-            <span> strong user experience.</span>
-          </span>
-        </p>
-        <p className="will-change-transform mb-20 paragraph text-white/70">
-          <span className="flex items-center whitespace-nowrap gap-2">
-            <span>Very, very</span>
-
-            <span>often I work with my comrade</span>
-            <span>
-              <Smile className="w-[50px] h-[34px]" />
-            </span>
-            <span>of the web, </span>
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="italic relative">
-              {/* Nữa sẽ tạo 1 trang để giới thiệu bản thân */}
-              <Link
-                href="https://www.facebook.com/"
-                className="underline text-white"
-                target="_blank"
-              >
-                Duc
-              </Link>
-            </span>
-            <span>, a very cool</span>
-            <span>
-              <SquareDashedBottomCode className="w-[50px] h-[34px]" />
-            </span>
-            <span>web developer. Together we</span>
-          </span>
-          <span className="flex items-center gap-2">
-            <span>founded </span>
-            <span className="font-bold italic">{"  "} Luma</span>
-            <span>, a web builder studio</span>
-            <span>
-              <Construction size={35} />
-            </span>
-            <span>that creates</span>
-          </span>
-          <span className="flex items-center ">
-            <span>your</span>
-            <span>
-              <Laptop size={35} />
-            </span>
-            <span>website from a to www. Come and say hello!</span>
-            <span>
-              <HandMetal size={35} />
-            </span>
-          </span>
-        </p>
+          </h2>
+        </div>
+        <div className="lg:gap-y-space-2xl col-span-full gap-y-space-lg custom-grid">
+          <div className="pointer-events-none relative z-0 col-span-4 flex w-full items-center overflow-clip rounded-md md:items-end">
+            <Image
+              src="/assets/images/my-self.jpg"
+              alt="img-profile"
+              loading="lazy"
+              width={460}
+              height={575}
+              className="w-full rounded object-cover object-center h-[575px]"
+            />
+            <div className="absolute top-0 h-full w-full bg-gradient-to-t from-[#080807] to-transparent opacity-30 rounded 2xl:rounded-2xl"></div>
+          </div>
+          <div className="col-span-7 col-start-6 flex flex-col gap-y-space-xl lg:gap-y-space-2xl">
+            <p className="sr-only">
+              With a passion for design and development, I take projects from
+              ideation to launch, ensuring a seamless journey that leaves a
+              lasting positive impact on the digital landscape and your
+              business.
+            </p>
+            <p
+              className="relative w-full max-w-[39ch] text-balance text-heading-4 font-medium leading-snug text-[#d1d1c7]"
+              aria-hidden="true"
+            >
+              <span aria-hidden="true" className="leading-[132.5%]">
+                With a passion for design and development, I take projects from
+                ideation to launch, ensuring a seamless journey that leaves a
+                lasting positive impact on the digital landscape and your
+                business.
+              </span>
+            </p>
+            <div className="flex flex-col gap-x-space-xl gap-y-space-sm lg:flex-row">
+              <span className="flex h-fit overflow-clip font-mono tracking-[-.035em]">
+                <span className="flex h-full font-medium uppercase text-nowrap text-[#a29e9a]">
+                  (About me)
+                </span>
+              </span>
+              <p className="flex w-full max-w-[38ch] flex-col text-balance text-xl font-medium leading-[132.5%] text-[#a29e9a]">
+                Creating great web experiences is my primary focus. I ensure
+                each project leaves users with a feel-good sensation through
+                meticulous attention to detail and user-centric design
+                principles.
+                <br />
+                <br />
+                When I&apos;m not immersed in web development and design, you
+                can find me sharing insights about my freelance journey on
+                YouTube, bouldering, playing music, or tending to my cherished
+                houseplants.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div className="flex items-center justify-center flex-row gap-8">
-        <IconsStar />
-        <Image
-          src="/assets/images/my-self.jpg"
-          width={1300}
-          height={1300}
-          priority={true}
-          className="w-[300px] h-[400px] object-cover rounded-2xl"
-          alt="avatar"
-        />
-        <IconsStar />
-      </div>
-    </div>
+    </section>
   );
 };
 

@@ -1,10 +1,12 @@
-// import Marquee from "@/components/animation/marquee/Marquee";
 import IconsArrowDown from "@/components/icons/IconsArrowDown";
 import Image from "next/image";
 
 const About = () => {
   return (
     <section className="mb-[20rem] w-full max-w-full px-12 py-10">
+      {/* <div className="w-full mb-[168px]">
+        <Marquee />
+      </div> */}
       <p className="text-[33.2px] leading-[41.4px] font-normal mx-auto text-center max-w-[877px] w-full mb-[168px] text-[#999]">
         We deliver top-tier research, strategy, creative assets and execution
         for industry-leading brands. Our approach blends innovation, AI and
@@ -12,8 +14,6 @@ const About = () => {
         Customer Profile, tells a compelling story and exceeds your business
         objectives.
       </p>
-
-      <div className="w-full mb-[168px]">{/* <Marquee /> */}</div>
 
       <div className="lg:gap-y-space-2xl gap-y-space-lg flex flex-col">
         <div className="custom-grid">

@@ -37,7 +37,10 @@ const Marquee = () => {
   };
 
   return (
-    <div ref={container} className="mx-auto overflow-hidden relative">
+    <div
+      ref={container}
+      className="mx-auto overflow-hidden relative bg-[#a7f000] text-black"
+    >
       <div
         className="flex flex-row items-center whitespace-nowrap gap-6"
         ref={firstText}

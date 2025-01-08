@@ -2,143 +2,204 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import gsap from "gsap";
+import Link from "next/link";
 
-const sliderContent = ["Blog", "Todo App", "Strive", "Lenas"];
+const slideContent = ["Strive", "Lenas", "Blog", "Todo App"];
 
 const Work = () => {
-  const [activeSlide, setActiveSlide] = useState(0);
-  const [allowScrollNextSection, setAllowScrollNextSection] = useState(false);
-  let lastScrollTime = 0;
-  const throttleDelay = 200;
+  const [currentImageIndex, setCurrentImageIndex] = useState(2);
+  const [currentContentIndex, setCurrentContentIndex] = useState(1);
+  const [isAnimating, setIsAnimating] = useState(false);
 
-  const handleScroll = (e: { deltaY: number }) => {
-    const currentTime = Date.now();
-    if (currentTime - lastScrollTime < throttleDelay) return;
-    lastScrollTime = currentTime;
+  const handleSplitTextIntoSpan = (selector: string) => {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach((element) => {
+      const text = element.textContent || "";
+      const splitText = text
+        .split("")
+        .map(
+          (char: string) =>
+            `<span style="position: relative;">${
+              char === " " ? "&nbsp;&nbsp;" : char
+            }</span>`
+        )
+        .join("");
+      element.innerHTML = splitText;
+    });
+  };
 
-    // Kiểm soát cuộn
-    if (!allowScrollNextSection) {
-      if (e.deltaY > 0 && activeSlide < sliderContent.length - 1) {
-        // Cuộn xuống
-        setActiveSlide((prev) => prev + 1);
-      } else if (e.deltaY < 0 && activeSlide > 0) {
-        // Cuộn lên
-        setActiveSlide((prev) => prev - 1);
-      }
+  const handleAnimation = () => {
+    if (isAnimating) return;
 
-      // Kích hoạt cho phép cuộn tiếp khi đã đạt slide cuối
-      if (e.deltaY > 0 && activeSlide === sliderContent.length - 1) {
-        setAllowScrollNextSection(true);
-      } else if (e.deltaY < 0 && activeSlide === 0) {
-        setAllowScrollNextSection(false); // Không cho cuộn về section trước nếu đang ở đầu
-      }
-    }
+    setIsAnimating(true);
+
+    handleSplitTextIntoSpan(".slider-content-active h1");
+
+    const nextIndex = (currentImageIndex % slideContent.length) + 1;
+    setCurrentImageIndex(nextIndex);
+
+    // Tạo HTML cho slide mới
+    const newSlideHTML = ` 
+      <div class="slide-next">
+        <div class="slide-next-img">
+          <img src="/assets/images/imgproject${nextIndex}.webp" alt="Image" width="1300" height="1300" class="object-cover w-full h-full" loading="lazy" />
+        </div>
+      </div>
+    `;
+    document
+      ?.querySelector(".slider")
+      ?.insertAdjacentHTML("beforeend", newSlideHTML);
+
+    // Animation cho text
+    gsap.to(".slider-content-active h1 span", {
+      top: "-175px",
+      stagger: 0.05,
+      ease: "power3.out",
+      duration: 0.5,
+      onComplete: () => {
+        gsap.to(".slider-content-active", {
+          top: "-175px",
+          duration: 0.25,
+          ease: "power3.out",
+        });
+      },
+    });
+
+    // Animation cho slide mới
+    const slideNextElement = document.querySelector(".slide-next img");
+    gsap.to(slideNextElement, {
+      scale: 2,
+      duration: 2,
+      ease: "power3.out",
+    });
+
+    // Content animation
+    handleSplitTextIntoSpan(".slider-content-next h1");
+    gsap.set(".slider-content-next h1 span", {
+      top: "200px",
+      visibility: "hidden",
+    });
+
+    gsap.to(".slider-content-next", {
+      top: "0",
+      duration: 1.125,
+      ease: "power3.out",
+      onComplete: () => {
+        const activeContent = document.querySelector(".slider-content-active");
+        if (activeContent) activeContent.remove();
+
+        gsap.to(".slider-content-next h1 span", {
+          top: 0,
+          stagger: 0.05,
+          ease: "power3.out",
+          duration: 0.5,
+          visibility: "visible",
+        });
+
+        const nextContent = document.querySelector(".slider-content-next");
+        nextContent?.classList.remove("slider-content-next");
+        nextContent?.classList.add("slider-content-active");
+        if (nextContent) {
+          (nextContent as HTMLElement).style.top = "0";
+        }
+
+        setCurrentContentIndex(
+          (prevIndex) => (prevIndex + 1) % slideContent.length
+        );
+
+        const newContentText = slideContent[currentContentIndex];
+        const newContentHTML = `<div class="slider-content-next" style="top: 200px; visibility: hidden;"><h1 class="heading">${newContentText}</h1></div>`;
+        const sliderContent = document.querySelector(".slider-content");
+        if (sliderContent) {
+          sliderContent.insertAdjacentHTML("beforeend", newContentHTML);
+        }
+      },
+    });
+
+    gsap.to(".slide-next-img", {
+      width: "100vw",
+      height: "100vh",
+      duration: 2,
+      ease: "power3.out",
+      onComplete: () => {
+        const currentActiveSlide = document.querySelector(".slide-active");
+        if (currentActiveSlide) {
+          currentActiveSlide?.parentNode?.removeChild(currentActiveSlide);
+        }
+
+        const nextSlide = document.querySelector(".slide-next");
+        if (nextSlide) {
+          nextSlide.classList.remove("slide-next");
+          nextSlide.classList.add("slide-active");
+
+          const nextSlideImg = nextSlide.querySelector(".slide-next-img");
+          nextSlideImg?.classList.remove("slide-next-img");
+        }
+
+        setTimeout(() => {
+          setIsAnimating(false);
+        }, 500);
+      },
+    });
   };
 
   useEffect(() => {
-    const slider = document.querySelector(".slider") as HTMLElement;
-    const currentSlide = slider?.querySelector(".slide:not(.exiting)");
-
-    // Xóa slide hiện tại
-    if (currentSlide) {
-      const exitingImgs = currentSlide.querySelectorAll("img");
-      gsap.to(exitingImgs, {
-        top: activeSlide < 1 ? "0%" : "100%", // Điều chỉnh hướng animation
-        duration: 1.5,
-        ease: "power4.inOut",
-      });
-      currentSlide.classList.add("exiting");
-    }
-
-    const newSlide = document.createElement("div");
-    newSlide.classList.add("slide", "light");
-    newSlide.style.clipPath = "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)";
-
-    const newSlideImg1 = document.createElement("div");
-    newSlideImg1.className = "slide-img slide-img-1";
-    const img1 = document.createElement("img");
-    img1.src = `/assets/images/imgproject${activeSlide + 1}.webp`;
-    img1.style.top = "100%";
-    newSlideImg1.appendChild(img1);
-    newSlide.appendChild(newSlideImg1);
-
-    const newSlideContent = document.createElement("div");
-    newSlideContent.classList.add("slide-content");
-    newSlideContent.innerHTML = `<h1>${sliderContent[activeSlide]}</h1>`;
-    newSlide.appendChild(newSlideContent);
-
-    const newSlideImg2 = document.createElement("div");
-    newSlideImg2.className = "slide-img slide-img-2";
-    const img2 = document.createElement("img");
-    img2.src = `/assets/images/imgproject${activeSlide + 1}.webp`;
-    img2.style.top = "100%";
-    newSlideImg2.appendChild(img2);
-    newSlide.appendChild(newSlideImg2);
-
-    slider?.appendChild(newSlide);
-
-    gsap.to(newSlide, {
+    gsap.to(".slide-next-img", {
       clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
       duration: 1.5,
-      ease: "power4.inOut",
-      onStart: () => {
-        gsap.to([img1, img2], {
-          top: "50%",
-          duration: 1.5,
-          ease: "power4.inOut",
-        });
-      },
-      onComplete: () => {
-        if (slider) removeExtraSlide(slider);
-      },
+      ease: "power3.out",
+      delay: 1,
     });
 
-    gsap.to(".slide-content h1", {
-      scale: 1,
-      duration: 1.5,
-      ease: "power4.inOut",
-    });
-  }, [activeSlide]);
+    document.addEventListener("click", handleAnimation);
 
-  const removeExtraSlide = (container: HTMLElement) => {
-    while (container.children.length > 5) {
-      if (container.firstChild) {
-        container.removeChild(container.firstChild);
-      }
-    }
-  };
+    return () => {
+      document.removeEventListener("click", handleAnimation);
+    };
+  }, [isAnimating, currentImageIndex, currentContentIndex]);
 
   return (
-    <section
-      className="w-full relative mb-[20rem]"
-      onWheel={handleScroll}
-      style={{
-        overflow: allowScrollNextSection ? "visible" : "hidden",
-      }}
-    >
+    <section className="w-full relative mb-[20rem] h-screen max-w-full">
+      <div className="copy">
+        <p>Projects Catalogue</p>
+        <p>2024 / 2025</p>
+      </div>
+
       <div className="slider">
-        <div className="slide light">
-          <div className="slide-img slide-img-1">
+        <div className="slide-active">
+          <Image
+            src="/assets/images/imgproject1.webp"
+            alt="Slide 1"
+            width={1300}
+            height={1300}
+            className="object-cover w-full h-full"
+            loading="lazy"
+          />
+        </div>
+        <div className="slide-next">
+          <div className="slide-next-img">
             <Image
-              src={`/assets/images/imgproject${activeSlide + 1}.webp`}
-              alt={`slide-${activeSlide + 1}`}
-              loading="lazy"
+              src="/assets/images/imgproject2.webp"
+              alt="Slide 2"
               width={1300}
               height={1300}
-            />
-          </div>
-          <div className="slide-content">
-            <h1>{sliderContent[activeSlide]}</h1>
-          </div>
-          <div className="slide-img slide-img-2">
-            <Image
-              src={`/assets/images/imgproject${activeSlide + 1}.webp`}
-              alt={`slide-${activeSlide + 1}`}
+              className="object-cover w-full h-full"
               loading="lazy"
-              width={1300}
-              height={1300}
             />
           </div>
+        </div>
+      </div>
+
+      <div className="slider-content">
+        <div className="slider-content-active">
+          <Link href="/case-study">
+            <h1 className="heading">{slideContent[currentContentIndex]}</h1>
+          </Link>
+        </div>
+        <div className="slider-content-next">
+          <h1 className="heading">
+            {slideContent[(currentContentIndex + 1) % slideContent.length]}
+          </h1>
         </div>
       </div>
     </section>

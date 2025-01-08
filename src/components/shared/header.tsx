@@ -35,6 +35,7 @@ const Header = () => {
         variants={menu}
         animate={isActive ? "open" : "closed"}
         initial="closed"
+        style={{ overflow: "hidden" }}
       >
         <AnimatePresence>
           {isActive && (

@@ -17,22 +17,33 @@ export const menus = [
   },
 ];
 
-export const footerLinks = [
+export const footerNavigation = [
   {
-    title: "Facebook",
-    href: "https://www.facebook.com/ducthienduc1001",
+    heading: "SITEMAP",
+    num: "01/",
+    links: [
+      { title: "Home", href: "/" },
+      { title: "Works", href: "/works" },
+      { title: "About", href: "/about" },
+      { title: "Playground", href: "/playground" },
+    ],
   },
   {
-    title: "LinkedIn",
-    href: "/",
+    heading: "SOCIALS",
+    num: "02/",
+    links: [
+      { title: "LinkedIn", href: "https://linkedin.com" },
+      { title: "Dribbble", href: "https://dribbble.com" },
+      { title: "Awwwards", href: "https://awwwards.com" },
+    ],
   },
   {
-    title: "Instagram",
-    href: "/",
-  },
-  {
-    title: "Twitter",
-    href: "/",
+    heading: "INFOS",
+    num: "03/",
+    links: [
+      { title: "Terms & Conditions", href: "/terms" },
+      { title: "Privacy Policy", href: "/privacy" },
+    ],
   },
 ];
 

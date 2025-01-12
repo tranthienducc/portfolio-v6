@@ -122,59 +122,59 @@ const Preloader = () => {
         <Image
           width={1300}
           height={1300}
-          loading="lazy"
           className="absolute w-full h-full object-cover clip-path-img"
-          src="/assets/images/my-self.jpg"
+          src="/assets/images/bg-1.png"
           alt="self portrait"
+          priority={true}
         />
         <Image
-          src="/assets/images/imgproject1.webp"
+          src="/assets/images/bg-3.png"
           width={1300}
           height={1300}
-          loading="lazy"
           className="absolute w-full h-full object-cover clip-path-img"
           alt="background noise"
+          priority={true}
         />
         <Image
-          src="/assets/images/imgproject2.webp"
+          src="/assets/images/bg-2.png"
           width={1300}
           height={1300}
-          loading="lazy"
           className="absolute w-full h-full object-cover clip-path-img"
           alt="self portrait"
+          priority={true}
         />
         <Image
-          src="/assets/images/imgproject3.webp"
+          src="/assets/images/bg-4.png"
           width={1300}
           height={1300}
-          loading="lazy"
           className="absolute w-full h-full object-cover clip-path-img"
           alt="self portrait"
+          priority={true}
         />
         <Image
-          src="/assets/images/imgproject4.webp"
+          src="/assets/images/bg-5.png"
           width={1300}
           height={1300}
-          loading="lazy"
           className="absolute w-full h-full object-cover clip-path-img"
           alt="self portrait"
+          priority={true}
         />
         <Image
-          src="/assets/images/my-self.jpg"
+          src="/assets/images/bg-6.png"
           width={1300}
           height={1300}
-          loading="lazy"
           className="absolute w-full h-full object-cover clip-path-img"
           alt="self portrait"
+          priority={true}
         />
 
         <Image
-          src="/assets/images/bg-noise.png"
+          src="/assets/images/bg-7.png"
           width={1300}
           height={1300}
-          loading="lazy"
           className="absolute w-full h-full object-cover clip-path-img"
           alt="background noise"
+          priority={true}
         />
       </div>
     </div>

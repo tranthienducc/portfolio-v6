@@ -1,13 +1,13 @@
 "use client";
-import { footerLinks, menus } from "@/config/routes";
+import { menus } from "@/config/routes";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { menu, perspective, slideIn } from "@/utils/animation";
+import gsap from "gsap";
+import CustomEase from "gsap/CustomEase";
+import Image from "next/image";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
-  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,79 +29,8 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="fixed top-0 z-20 overflow-hidden flex px-12 pt-7 flex-row justify-between items-start w-full max-w-full">
-      <motion.div
-        className="w-[480px] h-[650px] bg-[#ebe0e6] rounded-[25px] relative mr-[-47%]"
-        variants={menu}
-        animate={isActive ? "open" : "closed"}
-        initial="closed"
-        style={{ overflow: "hidden" }}
-      >
-        <AnimatePresence>
-          {isActive && (
-            <nav className="flex flex-col justify-between pt-[100px] pb-[50px] px-[40px] h-full box-border">
-              <div className="flex gap-[10px] flex-col">
-                {menus.map((menu, i) => {
-                  return (
-                    <div key={`b_${i}`} className="linkContainer">
-                      <motion.div
-                        custom={i}
-                        variants={perspective}
-                        initial="initial"
-                        animate="enter"
-                        exit="exit"
-                      >
-                        <Link
-                          href={menu.href}
-                          className="text-black text-[46px] hover:text-[#999] cursor-pointer"
-                        >
-                          {menu.label}
-                        </Link>
-                      </motion.div>
-                    </div>
-                  );
-                })}
-              </div>
-              <motion.div className="flex flex-wrap">
-                {footerLinks.map((link, i) => {
-                  return (
-                    <motion.a
-                      variants={slideIn}
-                      custom={i}
-                      initial="initial"
-                      animate="enter"
-                      exit="exit"
-                      key={`f_${i}`}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-[50%] mt-[5px] text-base text-[#999] hover:text-black cursor-pointer"
-                    >
-                      {link.title}
-                    </motion.a>
-                  );
-                })}
-              </motion.div>
-            </nav>
-          )}
-        </AnimatePresence>
-      </motion.div>
-      {isScrolled ? (
-        <div
-          onClick={() => setIsActive(!isActive)}
-          className={`rounded-full size-12 bg-white flex items-center justify-center
-          transition-all duration-300 ease-in-out transform 
-          ${
-            isScrolled ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          }`}
-        >
-          <div className={`burger ${isActive ? "burgerActive" : ""}`}></div>
-        </div>
-      ) : (
-        <Navigation />
-      )}
-
-      {/* Rest of your header content remains the same */}
+    <header className="fixed top-0 z-[999] overflow-hidden flex px-12 pt-7 flex-row justify-between items-start w-full max-w-full">
+      <span className="text-sm font-normal">VN — © 2024</span>
 
       <Link
         href="/"
@@ -109,7 +38,8 @@ const Header = () => {
       >
         td
       </Link>
-      <span className="text-sm font-normal">VN — © 2024</span>
+
+      {isScrolled ? <HamburgerMenu /> : <Navigation />}
     </header>
   );
 };
@@ -129,5 +59,150 @@ function Navigation() {
         ))}
       </ul>
     </nav>
+  );
+}
+
+function HamburgerMenu() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  useEffect(() => {
+    gsap.registerPlugin(CustomEase);
+    CustomEase.create(
+      "hop",
+      "M0,0 C0.354,0 0.464,0.133 0.498,0.502 0.532,0.872 0.651,1 1,1"
+    );
+
+    const splitTextIntoSpans = (selector: string) => {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach((element) => {
+        const text = (element as HTMLElement).innerText;
+        const splitText = text
+          .split("")
+          .map((char) => `<span>${char === " " ? "&nbsp;&nbsp;" : char}</span>`)
+          .join("");
+        element.innerHTML = splitText;
+      });
+    };
+    splitTextIntoSpans(".header h1");
+  }, []);
+
+  const toggleMenu = () => {
+    if (isAnimating) return;
+
+    setIsAnimating(true);
+
+    if (menuOpen) {
+      gsap.to(".menu", {
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+        ease: "hop",
+        duration: 1.5,
+        onComplete: () => {
+          const menuElement = document.querySelector(".menu");
+          if (menuElement) {
+            (menuElement as HTMLElement).style.pointerEvents = "none";
+          }
+          setMenuOpen(false);
+          setIsAnimating(false);
+        },
+      });
+
+      gsap.set(".menu", {
+        clipPath: "polygon(0% 100% , 100% 100%, 100% 100%, 0% 100%)",
+      });
+    } else {
+      setMenuOpen(true);
+
+      gsap.to(".menu", {
+        clipPath: "polygon(0% 0% ,100% 0%, 100% 100%, 0% 100%)",
+        ease: "hop",
+        duration: 1.5,
+        onStart: () => {
+          const menuElement = document.querySelector(".menu");
+          if (menuElement) {
+            (menuElement as HTMLElement).style.pointerEvents = "all";
+          }
+        },
+        onComplete: () => {
+          setIsAnimating(false);
+        },
+      });
+    }
+  };
+
+  return (
+    <div className="relative z-20">
+      <div
+        className={`menu-toggle ${menuOpen ? "opened" : "closed"}`}
+        onClick={toggleMenu}
+      >
+        <div className="menu-toggle-icon">
+          <div className="hamburger">
+            <div className="menu-bar" data-position="top"></div>
+            <div className="menu-bar" data-position="bottom"></div>
+          </div>
+        </div>
+        <div className="menu-copy">
+          <p>Menu</p>
+        </div>
+      </div>
+
+      <div className="menu">
+        <div className="col col-1">
+          <div className="menu-logo text-black text-[60px] uppercase font-BiggerDisplay font-bold">
+            <Link href="#">ThienDuc</Link>
+          </div>
+
+          <div className="links">
+            <div className="link">
+              <a href="#">Projects</a>
+            </div>
+            <div className="link">
+              <Link href="#">Expertise</Link>
+            </div>
+            <div className="link">
+              <Link href="#">Agency</Link>
+            </div>
+            <div className="link">
+              <Link href="#">Contact</Link>
+            </div>
+          </div>
+
+          <div className="video-wrapper">
+            <Image
+              src="/assets/images/my-self.jpg"
+              loading="lazy"
+              width={1300}
+              height={1300}
+              alt="img"
+            />
+          </div>
+        </div>
+        <div className="col col-2">
+          <div className="socials">
+            <div className="sub-col">
+              <p>Avaro</p>
+              <p>9 quao Androe Rockfield</p>
+              <p>69001 Ontario</p>
+              <p>Canada</p>
+              <br />
+              <p>contact@Avaro.fr</p>
+              <p>job@Avaro.fr</p>
+            </div>
+            <div className="sub-col">
+              <p>Instagram</p>
+              <p>LinkedIn</p>
+              <p>Twitter</p>
+              <p>Facebook</p>
+              <br />
+              <p>01 62 32 82 42</p>
+            </div>
+          </div>
+          <div className="header">
+            <h1>Avaro</h1>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

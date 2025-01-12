@@ -82,3 +82,42 @@ export const cards = [
     number: "(03)",
   },
 ];
+export const testimonials = [
+  {
+    message: "Huy is phenomenal. An absolute pleasure to work with!",
+    author: "Pieter Pattyn",
+    position: "Founder's Associate @Volup",
+    services: [
+      {
+        label: "Web Design",
+      },
+      {
+        label: "Web Devlopment",
+      },
+      {
+        label: "SEO",
+      },
+    ],
+    num: 1,
+    url: "/assets/images/my-self.jpg",
+  },
+  {
+    message:
+      "Beyond standards. Huy grasped our vision and brought it to life brilliantly.",
+    author: "Dylan Kim",
+    position: "Co-founder @MLV Ignite",
+    services: [
+      {
+        label: "Web Design",
+      },
+      {
+        label: "Web Devlopment",
+      },
+      {
+        label: "SEO",
+      },
+    ],
+    num: 2,
+    url: "/assets/images/bg-5.png",
+  },
+];

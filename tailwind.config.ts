@@ -16,7 +16,7 @@ export default {
     },
     extend: {
       backgroundImage: {
-        "hero-pattern": "url('/assets/images/bg-noise.png')",
+        "hero-pattern": "url('/assets/images/bg-noise-3.jpg')",
       },
       colors: {
         background: "var(--background)",

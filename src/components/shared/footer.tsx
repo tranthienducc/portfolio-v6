@@ -1,72 +1,70 @@
-import { social } from "@/config/routes";
-import { ArrowUp } from "lucide-react";
+import { footerNavigation } from "@/config/routes";
 import Link from "next/link";
+import React from "react";
 
 const Footer = () => {
   return (
-    <footer
-      className="bg-white py-[20px] px-[21px] relative h-[733.35px] max-w-full w-full"
-      style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
-    >
-      <div className="fixed bottom-0 w-full h-[733.35px]">
-        <div className="flex flex-row items-start justify-between">
-          <div className="flex flex-col gap-0 text-left text-[15px] leading-[20.2518px] font-medium text-black">
-            <span>Designer and Frontend Developer</span>
-            <span>Portfolio 2023-2025</span>
+    <footer className="bg-[#ebe0e6] relative z-[-10] max-w-full w-full h-[100vh] overflow-hidden">
+      <div className="fixed bottom-0 w-full h-[832.35px] flex flex-col justify-between py-[20px] px-[21px]">
+        <div className="flex items-start justify-between">
+          <div className="w-layout-grid footer-link-grid-wrap">
+            <div className="flex items-start footer-grid-area gap-[94px]">
+              {footerNavigation.map((footer) => (
+                <React.Fragment key={footer.heading}>
+                  <div className="text-black text-[.75em]">{footer.num}</div>
+
+                  <div className="footer-links-item">
+                    <div className="footer-grid-area text-black text-[1.25em] font-normal leading-[1] uppercase">
+                      {footer.heading}
+                    </div>
+                    <ul className="w-layout-grid footer-links-grid">
+                      {footer.links.map((link) => (
+                        <li key={link.href} className="footer-grid-area">
+                          <Link href={link.href} className="footer-link-txt">
+                            {link.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </React.Fragment>
+              ))}
+            </div>
           </div>
           <Link
-            href="/"
-            className="font-Pangaia text-lg font-bold text-black flex-shrink-0"
+            href="/contact"
+            className="relative py-[1vw] text-black max-h-full inline-block"
           >
-            td
-          </Link>
-          <div className="flex flex-col gap-0 text-right text-[15px] leading-[20.2518px] font-medium text-black">
-            <span>Available for freelance work</span>
-            <span>January 2025</span>
-          </div>
-        </div>
-        <div className="pb-[119px] pt-[13rem] flex items-center justify-center text-center flex-col">
-          <h1 className="max-w-[42rem] w-full uppercase text-black text-[103.038px] leading-[99.43px] font-bold font-BiggerDisplay mb-[25px]">
-            interested in working together?
-          </h1>
-          <p className="text-[15px] font-normal text-black mb-0">
-            Drop me an email:
-          </p>
-          <span className="text-[26px] font-normal text-black">
-            thienducdev@gmail.com
-          </span>
-        </div>
-        <div className="flex flex-row items-end justify-between">
-          <div className="flex flex-col gap-0 text-left text-[15px] leading-[20.2518px] font-medium text-black">
-            <span>
-              Designer by:{" "}
-              <Link
-                href="https://www.threads.net/@darrysduc_"
-                className="underline"
-              >
-                Tran Thien Duc
-              </Link>
+            <span className="uppercase font-normal text-[22.8px] underline whitespace-nowrap">
+              let&apos; work together
             </span>
-            <span>Development by: Tran Thien Duc</span>
+          </Link>
+        </div>
+        <div className="flex flex-col">
+          <div className="flex overflow-hidden opacity-[.6] justify-between mb-[1vw] px-[.5em]">
+            <span className="text-[.75em] uppercase font-normal text-black">
+              UI/UX designer / Frontend Developer
+            </span>
+            <span className="text-[.75em] uppercase font-normal text-black">
+              portfolio 2025
+            </span>
           </div>
-          <div className="flex flex-row items-center gap-[11px]">
-            {social.map((item, index) => (
-              <Link
-                href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                key={index}
-                className="rounded-full border border-black/50 pt-[0.6em] pb-[0.625em] px-[1.25em] text-[.875em] leading-[1] uppercase"
-              >
-                <span className="text-black">{item.label}</span>
-              </Link>
-            ))}
-          </div>
-          <div className="flex flex-col gap-0 text-right text-[15px] leading-[20.2518px] font-medium text-black items-end">
-            <Link href="#" className="flex flex-row items-center gap-2">
-              Back to top <ArrowUp size={12} className="text-black" />
+          <h3 className="overflow-hidden text-black font-bold tracking-[0] uppercase mb-[-2.25vw] font-BiggerDisplay text-[30.5em] leading-[.9] whitespace-nowrap">
+            thien duc
+          </h3>
+          <div className="relative overflow-hidden flex px-[.5em] min-h-[2em] items-stretch justify-between">
+            <Link
+              href="#about"
+              className="flex items-center text-black uppercase"
+            >
+              infos & credits
             </Link>
-            <span>© 2024 – All Rights Reserved</span>
+            <Link
+              href="#hero"
+              className="flex items-center text-black uppercase"
+            >
+              back to top
+            </Link>
           </div>
         </div>
       </div>

@@ -34,7 +34,7 @@ const Services = () => {
               </div>
               <div className="spline-wrapper">
                 <Image
-                  src="/assets/icons/icons-abstract-1.webp"
+                  src="/assets/icons/icons-abstract-1.svg"
                   alt="abstract-1"
                   width={500}
                   height={500}
@@ -71,8 +71,8 @@ const Services = () => {
               </div>
               <div className="spline-wrapper">
                 <Image
-                  src="/assets/icons/icons-abstract-2.webp"
-                  alt="abstract-1"
+                  src="/assets/icons/icons-abstract-2.svg"
+                  alt="abstract-2"
                   width={500}
                   height={500}
                   className="w-[300px] h-[300px]"
@@ -138,7 +138,7 @@ const Services = () => {
               </div>
               <div className="spline-wrapper">
                 <Image
-                  src="/assets/icons/icons-abstract-3.webp"
+                  src="/assets/icons/icons-abstract-3.svg"
                   alt="abstract-1"
                   width={500}
                   height={500}
@@ -175,7 +175,7 @@ const Services = () => {
               </div>
               <div className="spline-wrapper">
                 <Image
-                  src="/assets/icons/icons-abstract-4.webp"
+                  src="/assets/icons/icons-abstract-4.svg"
                   alt="abstract-1"
                   width={500}
                   height={500}
@@ -218,7 +218,7 @@ const Services = () => {
             </div>
             <div className="spline-wrapper">
               <Image
-                src="/assets/icons/icons-abstract-5.webp"
+                src="/assets/icons/icons-abstract-5.svg"
                 alt="abstract-1"
                 width={500}
                 height={500}
@@ -272,7 +272,7 @@ const Services = () => {
             </div>
             <div className="spline-wrapper">
               <Image
-                src="/assets/icons/icons-abstract-6.webp"
+                src="/assets/icons/icons-abstract-6.svg"
                 alt="abstract-1"
                 width={500}
                 height={500}

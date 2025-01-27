@@ -154,7 +154,7 @@ const Testimonial = () => {
     <section className="mt-[20rem] px-12 pt-10">
       <div className="flex flex-col gap-y-space-lg border-b-2 border-white/10 pb-space-lg md:gap-y-space-2xl">
         <h2 className="section-heading-2 text-[#d1d1c7]">
-          Don&apos;t take my word for it /
+          Look into it on your own./
         </h2>
         <div className="flex grid-cols-12 gap-x-fluid sm:justify-end lg:grid">
           <div className="col-span-7 col-start-1 flex flex-col gap-x-space-xl gap-y-space-2xs sm:col-start-6 sm:flex-row">

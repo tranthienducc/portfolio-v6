@@ -85,7 +85,7 @@ export const cards = [
 export const testimonials = [
   {
     message: "Huy is phenomenal. An absolute pleasure to work with!",
-    author: "Pieter Pattyn",
+    author: "Daniel Long",
     position: "Founder's Associate @Volup",
     services: [
       {
@@ -99,7 +99,7 @@ export const testimonials = [
       },
     ],
     num: 1,
-    url: "/assets/images/my-self.jpg",
+    url: "/assets/images/client-1.jpg",
   },
   {
     message:
@@ -118,6 +118,44 @@ export const testimonials = [
       },
     ],
     num: 2,
-    url: "/assets/images/bg-5.png",
+    url: "/assets/images/client-2.jpg",
+  },
+];
+
+export const sliderContent = [
+  {
+    name: "Strive",
+    img: "/assets/images/imgproject1.avif",
+    url: "/case-study/strive",
+    quantity: 1,
+    category: [{ title: "Branding" }, { title: "Art Direction" }],
+  },
+  {
+    name: "Lenas",
+    img: "/assets/images/imgproject2.avif",
+    url: "/case-study/lenas",
+    quantity: 1,
+    category: [{ title: "Mobile App" }, { title: "UX Research" }],
+  },
+  {
+    name: "Gondi UI",
+    img: "/assets/images/imgproject3.avif",
+    url: "/case-study/gondi-ui",
+    quantity: 1,
+    category: [{ title: "Branding" }, { title: "Art Direction" }],
+  },
+  {
+    name: "Blog",
+    img: "/assets/images/imgproject4.avif",
+    url: "/case-study/blog",
+    quantity: 1,
+    category: [{ title: "Branding" }, { title: "Art Direction" }],
+  },
+  {
+    name: "Vios",
+    img: "/assets/images/imgproject1.avif",
+    url: "/case-study/vios",
+    quantity: 1,
+    category: [{ title: "Coming Soon" }],
   },
 ];

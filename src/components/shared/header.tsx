@@ -5,9 +5,11 @@ import { useEffect, useState } from "react";
 import gsap from "gsap";
 import CustomEase from "gsap/CustomEase";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,9 +30,12 @@ const Header = () => {
     };
   }, []);
 
+  if (pathname.startsWith("/case-study")) {
+    return null;
+  }
   return (
     <header className="fixed top-0 z-[999] overflow-hidden flex px-12 pt-7 flex-row justify-between items-start w-full max-w-full">
-      <span className="text-sm font-normal">VN — © 2024</span>
+      <span className="text-sm font-normal">VN — © 2025</span>
 
       <Link
         href="/"
@@ -93,8 +98,22 @@ function HamburgerMenu() {
     setIsAnimating(true);
 
     if (menuOpen) {
+      // Close menu animations
+      gsap.to(".link, .socials .sub-col p", {
+        opacity: 0,
+        y: 30,
+        duration: 0.5,
+      });
+
+      gsap.to(".header h1 span", {
+        rotateY: 90,
+        y: 500,
+        scale: 0.75,
+        duration: 0.5,
+      });
+
       gsap.to(".menu", {
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+        clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
         ease: "hop",
         duration: 1.5,
         onComplete: () => {
@@ -106,13 +125,10 @@ function HamburgerMenu() {
           setIsAnimating(false);
         },
       });
-
-      gsap.set(".menu", {
-        clipPath: "polygon(0% 100% , 100% 100%, 100% 100%, 0% 100%)",
-      });
     } else {
       setMenuOpen(true);
 
+      // Open menu animations
       gsap.to(".menu", {
         clipPath: "polygon(0% 0% ,100% 0%, 100% 100%, 0% 100%)",
         ease: "hop",
@@ -124,11 +140,45 @@ function HamburgerMenu() {
           }
         },
         onComplete: () => {
+          // Animate text elements after menu is opened
+          gsap.to(".link", {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            stagger: 0.1,
+          });
+
+          gsap.to(".socials .sub-col p", {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            stagger: 0.05,
+          });
+
+          gsap.to(".header h1 span", {
+            rotateY: 0,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            stagger: 0.02,
+          });
+
           setIsAnimating(false);
         },
       });
     }
   };
+
+  useEffect(() => {
+    const menuElement = document.querySelector(".menu");
+    if (menuElement) {
+      if (menuOpen) {
+        menuElement.classList.add("active");
+      } else {
+        menuElement.classList.remove("active");
+      }
+    }
+  }, [menuOpen]);
 
   return (
     <div className="relative z-20">
@@ -155,7 +205,7 @@ function HamburgerMenu() {
 
           <div className="links">
             <div className="link">
-              <a href="#">Projects</a>
+              <Link href="#">Projects</Link>
             </div>
             <div className="link">
               <Link href="#">Expertise</Link>
@@ -172,8 +222,8 @@ function HamburgerMenu() {
             <Image
               src="/assets/images/my-self.jpg"
               loading="lazy"
-              width={1300}
-              height={1300}
+              width={475}
+              height={264}
               alt="img"
             />
           </div>
@@ -199,7 +249,7 @@ function HamburgerMenu() {
             </div>
           </div>
           <div className="header">
-            <h1>Avaro</h1>
+            <h1>thienduc</h1>
           </div>
         </div>
       </div>

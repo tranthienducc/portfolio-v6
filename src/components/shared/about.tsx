@@ -4,9 +4,6 @@ import Image from "next/image";
 const About = () => {
   return (
     <section className="mb-[20rem] w-full max-w-full px-12 py-10">
-      {/* <div className="w-full mb-[168px]">
-        <Marquee />
-      </div> */}
       <p className="text-[33.2px] leading-[41.4px] font-normal mx-auto text-center max-w-[877px] w-full mb-[168px] text-[#999]">
         We deliver top-tier research, strategy, creative assets and execution
         for industry-leading brands. Our approach blends innovation, AI and
@@ -42,7 +39,7 @@ const About = () => {
         <div className="lg:gap-y-space-2xl col-span-full gap-y-space-lg custom-grid">
           <div className="pointer-events-none relative z-0 col-span-4 flex w-full items-center overflow-clip rounded-md md:items-end">
             <Image
-              src="/assets/images/my-self.jpg"
+              src="/assets/images/client-2.jpg"
               alt="img-profile"
               loading="lazy"
               width={460}

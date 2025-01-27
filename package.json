@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@studio-freight/react-lenis": "^0.0.47",
+    "clsx": "^2.1.1",
     "framer-motion": "^11.15.0",
     "gsap": "^3.12.5",
     "lucide-react": "^0.468.0",
@@ -17,7 +18,8 @@
     "ogl": "^1.0.9",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "split-type": "^0.3.4"
+    "split-type": "^0.3.4",
+    "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
     "@types/node": "^20",

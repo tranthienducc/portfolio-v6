@@ -15,8 +15,12 @@ export default {
       },
     },
     extend: {
+      flex: {
+        "2": "1 0 0px",
+      },
       backgroundImage: {
-        "hero-pattern": "url('/assets/images/bg-noise-3.jpg')",
+        "hero-pattern": "url('/assets/images/bg-noise.webp')",
+        "footer-pattern": "url('/assets/images/bg-footer.avif')",
       },
       colors: {
         background: "var(--background)",
@@ -141,6 +145,9 @@ export default {
         },
         ".gap-space-2xs": {
           gap: "clamp(0.5625rem,0.5446rem + 0.0893vi,0.625rem)",
+        },
+        ".aspect-ratio-custom": {
+          aspectRatio: "1.564327485380117 / 1",
         },
         ".ease-in-out-cubic": {
           transitionTimingFunction: "cubic-bezier(.65,0,0,1)",

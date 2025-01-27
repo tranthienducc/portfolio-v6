@@ -3,7 +3,7 @@ const IconsArrowDown = () => {
     <svg
       stroke="currentColor"
       fill="none"
-      strokeWidth="1"
+      strokeWidth="3"
       viewBox="6 6 12 12"
       strokeLinecap="round"
       strokeLinejoin="round"

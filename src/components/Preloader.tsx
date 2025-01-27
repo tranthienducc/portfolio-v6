@@ -1,181 +1,163 @@
 "use client";
 import gsap from "gsap";
-import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Preloader = () => {
-  const digit1Ref = useRef(null);
-  const digit2Ref = useRef(null);
-  const digit3Ref = useRef(null);
-  const progressBarRef = useRef(null);
-  const preloaderRef = useRef(null);
-  const heroImgsRef = useRef(null);
-
-  const createDigit3Numbers = () => {
-    const numbers = [];
-    for (let i = 0; i < 2; i++) {
-      for (let j = 0; j < 10; j++) {
-        numbers.push(j);
-      }
-    }
-    numbers.push(0);
-    return numbers;
-  };
-
-  const animate = (
-    digitRef: React.RefObject<HTMLDivElement>,
-    duration: number,
-    delay: number = 1
-  ) => {
-    if (!digitRef.current) return;
-
-    const numHeight = digitRef.current.querySelector(".num")?.clientHeight;
-    if (!numHeight) return;
-
-    const totalDistance =
-      (digitRef.current.querySelectorAll(".num").length - 1) * numHeight;
-
-    gsap.to(digitRef.current, {
-      y: -totalDistance,
-      duration: duration,
-      delay: delay,
-      ease: "power2.inOut",
-    });
-  };
+  const [isVisible, setIsVisible] = useState(true);
+  const loaderRef = useRef<HTMLDivElement>(null);
+  const tlRef = useRef<gsap.core.Timeline | null>(null);
 
   useEffect(() => {
-    animate(digit3Ref, 5);
-    animate(digit2Ref, 6);
-    animate(digit1Ref, 2, 5);
+    const windowWidth = window.innerWidth;
+    const wrapperWidth = 180;
+    const finalPosition = windowWidth - wrapperWidth;
+    const stepDistance = finalPosition / 6;
 
-    gsap.to(progressBarRef.current, {
-      width: "30%",
-      duration: 2,
+    tlRef.current = gsap.timeline();
+
+    tlRef.current.to(".counter-num", {
+      x: -900,
+      duration: 0.85,
+      delay: 0.5,
       ease: "power4.inOut",
-      delay: 7,
     });
 
-    gsap.to(progressBarRef.current, {
-      width: "100%",
-      opacity: 0,
-      duration: 2,
-      delay: 8.5,
-      ease: "power3.out",
-      onComplete: () => {
-        if (preloaderRef.current) {
-          gsap.set(preloaderRef.current, { display: "none" });
-        }
-        // Đặt lại overflow cho body
-        setTimeout(() => {
-          document.body.style.overflow = "auto";
-          document.body.style.height = "auto";
-        }, 0);
-      },
+    for (let i = 1; i <= 6; i++) {
+      const xPosition = -900 + i * 180;
+      tlRef.current.to(".counter-num", {
+        x: xPosition,
+        duration: 0.85,
+        ease: "power4.inOut",
+        onStart: () => {
+          gsap.to(".count-wrapper", {
+            x: stepDistance * i,
+            duration: 0.85,
+            ease: "power4.inOut",
+          });
+        },
+      });
+    }
+
+    gsap.set(".revealer svg", {
+      scale: 0,
     });
 
-    gsap.to(".hero-imgs > img", {
-      clipPath: "polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%)",
-      duration: 1,
-      ease: "power4.inOut",
-      stagger: 0.25,
-      delay: 9,
+    const delays = [6, 6.5, 7];
+    document.querySelectorAll(".revealer svg").forEach((el, i) => {
+      gsap.to(el, {
+        scale: 45,
+        duration: 1.5,
+        ease: "power4.inOut",
+        delay: delays[i],
+        onComplete: () => {
+          if (i === delays.length - 1) {
+            gsap.to(loaderRef.current, {
+              opacity: 0,
+              duration: 0.5,
+              onComplete: () => setIsVisible(false),
+            });
+          }
+        },
+      });
     });
 
-    gsap.to(heroImgsRef.current, {
-      scale: 1.25,
-      duration: 3,
-      ease: "power3.inOut",
-      delay: 9,
-    });
-
-    document.body.style.overflow = "hidden";
+    return () => {
+      if (tlRef.current) {
+        tlRef.current.kill();
+      }
+      gsap.killTweensOf(".revealer svg");
+    };
   }, []);
 
-  return (
-    <div className="w-[100vw] h-screen bg-[#ebe0e6] overflow-hidden z-30 relative">
-      <div className="pre-loader" ref={preloaderRef}>
-        <p>Loading</p>
-        <div className="counter">
-          <div className="digit-1" ref={digit1Ref}>
-            <div className="num">0</div>
-            <div className="num offset">1</div>
-          </div>
-          <div className="digit-2" ref={digit2Ref}>
-            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((num, index) => (
-              <div key={`digit2-${index}`} className="num">
-                {num}
-              </div>
-            ))}
-          </div>
-          <div className="digit-3" ref={digit3Ref}>
-            {createDigit3Numbers().map((num, index) => (
-              <div key={`digit3-${index}`} className="num">
-                {num}
-              </div>
-            ))}
-          </div>
-          <div className="digit-4">%</div>
-        </div>
-        <div className="progress-bar" ref={progressBarRef}></div>
-      </div>
-      <div className="hero-imgs" ref={heroImgsRef}>
-        <Image
-          width={1300}
-          height={1300}
-          className="absolute w-full h-full object-cover clip-path-img"
-          src="/assets/images/bg-1.png"
-          alt="self portrait"
-          priority={true}
-        />
-        <Image
-          src="/assets/images/bg-3.png"
-          width={1300}
-          height={1300}
-          className="absolute w-full h-full object-cover clip-path-img"
-          alt="background noise"
-          priority={true}
-        />
-        <Image
-          src="/assets/images/bg-2.png"
-          width={1300}
-          height={1300}
-          className="absolute w-full h-full object-cover clip-path-img"
-          alt="self portrait"
-          priority={true}
-        />
-        <Image
-          src="/assets/images/bg-4.png"
-          width={1300}
-          height={1300}
-          className="absolute w-full h-full object-cover clip-path-img"
-          alt="self portrait"
-          priority={true}
-        />
-        <Image
-          src="/assets/images/bg-5.png"
-          width={1300}
-          height={1300}
-          className="absolute w-full h-full object-cover clip-path-img"
-          alt="self portrait"
-          priority={true}
-        />
-        <Image
-          src="/assets/images/bg-6.png"
-          width={1300}
-          height={1300}
-          className="absolute w-full h-full object-cover clip-path-img"
-          alt="self portrait"
-          priority={true}
-        />
+  if (!isVisible) return null;
 
-        <Image
-          src="/assets/images/bg-7.png"
-          width={1300}
-          height={1300}
-          className="absolute w-full h-full object-cover clip-path-img"
-          alt="background noise"
-          priority={true}
-        />
+  return (
+    <div
+      ref={loaderRef}
+      className="w-full h-full bg-[#000] overflow-hidden z-[9999] fixed top-0 left-0 flex items-end text-white font-BiggerDisplay"
+    >
+      <div className="count-wrapper">
+        <div className="counter-num">
+          <div className="digit">
+            <h1>9</h1>
+          </div>
+          <div className="digit">
+            <h1>8</h1>
+          </div>
+          <div className="digit">
+            <h1>7</h1>
+          </div>
+          <div className="digit">
+            <h1>4</h1>
+          </div>
+          <div className="digit">
+            <h1>2</h1>
+          </div>
+          <div className="digit">
+            <h1>0</h1>
+          </div>
+        </div>
+      </div>
+      <div className="count-wrapper">
+        <div className="counter-num">
+          <div className="digit">
+            <h1>9</h1>
+          </div>
+          <div className="digit">
+            <h1>5</h1>
+          </div>
+          <div className="digit">
+            <h1>9</h1>
+          </div>
+          <div className="digit">
+            <h1>7</h1>
+          </div>
+          <div className="digit">
+            <h1>4</h1>
+          </div>
+          <div className="digit">
+            <h1>0</h1>
+          </div>
+        </div>
+      </div>
+      <div className="revealer revealer-1">
+        <svg
+          width="200"
+          height="200"
+          viewBox="0 0 200 200"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M100 10 L108 70 C110 85 115 90 130 95 L190 100 L130 105 C115 110 110 115 108 130 L100 190 L92 130 C90 115 85 110 70 105 L10 100 L70 95 C85 90 90 85 92 70 Z"
+            fill="white"
+          />
+        </svg>
+      </div>
+      <div className="revealer revealer-2">
+        <svg
+          width="200"
+          height="200"
+          viewBox="0 0 200 200"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M100 10 L108 70 C110 85 115 90 130 95 L190 100 L130 105 C115 110 110 115 108 130 L100 190 L92 130 C90 115 85 110 70 105 L10 100 L70 95 C85 90 90 85 92 70 Z"
+            fill="#CDFD50"
+          />
+        </svg>
+      </div>
+      <div className="revealer revealer-3">
+        <svg
+          width="200"
+          height="200"
+          viewBox="0 0 200 200"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M100 10 L108 70 C110 85 115 90 130 95 L190 100 L130 105 C115 110 110 115 108 130 L100 190 L92 130 C90 115 85 110 70 105 L10 100 L70 95 C85 90 90 85 92 70 Z"
+            fill="black"
+          />
+        </svg>
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ export default {
         "2": "1 0 0px",
       },
       backgroundImage: {
-        "hero-pattern": "url('/assets/images/bg-noise.webp')",
+        "hero-pattern": "url('/assets/images/bg-robot.png')",
         "footer-pattern": "url('/assets/images/bg-footer.avif')",
       },
       colors: {
@@ -29,7 +29,7 @@ export default {
       fontFamily: {
         BiggerDisplay: "Bigger Display",
         ApproachTrial: "Approach Trial",
-        Pangaia: "Pangaia",
+        Gridular: "Gridular",
       },
     },
   },
@@ -148,6 +148,12 @@ export default {
         },
         ".aspect-ratio-custom": {
           aspectRatio: "1.564327485380117 / 1",
+        },
+        ".aspect-ratio-1": {
+          aspectRatio: "1.56433 / 1",
+        },
+        ".aspect-ratio-2": {
+          aspectRatio: "-0.43567",
         },
         ".ease-in-out-cubic": {
           transitionTimingFunction: "cubic-bezier(.65,0,0,1)",

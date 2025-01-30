@@ -1,22 +1,3 @@
-export const projects = [
-  { title: "Blog", src: "/assets/images/imgproject1.webp", color: "#fff" },
-  {
-    title: "Todo App",
-    src: "/assets/images/imgproject2.webp",
-    color: "#8C8C8C",
-  },
-  {
-    title: "Strive Platform",
-    src: "/assets/images/imgproject3.webp",
-    color: "#EFE8D3",
-  },
-  {
-    title: "Lenas Platform",
-    src: "/assets/images/imgproject4.webp",
-    color: "#706D63",
-  },
-];
-
 export const cards = [
   {
     images: "/assets/icons/icons-star.svg",
@@ -125,37 +106,50 @@ export const testimonials = [
 export const sliderContent = [
   {
     name: "Strive",
-    img: "/assets/images/imgproject1.avif",
+    img1: "/assets/images/imgproject1.avif",
+    img2: "/assets/images/imgproject5.avif",
     url: "/case-study/strive",
+    link: "www.strive-platform.xyz",
+    des: "(An app for buying, selling, and trading sneakers) tailored for the youth. Jorden focuses on a simple experience with a minimalist and youthful design.",
+    tag: "©01",
     quantity: 1,
     category: [{ title: "Branding" }, { title: "Art Direction" }],
   },
   {
     name: "Lenas",
-    img: "/assets/images/imgproject2.avif",
+    img1: "/assets/images/imgproject2.avif",
+    img2: "/assets/images/imgproject1.avif",
+    link: "www.lenas.cloud",
+    des: "(An app for buying, selling, and trading sneakers) tailored for the youth. Jorden focuses on a simple experience with a minimalist and youthful design.",
     url: "/case-study/lenas",
-    quantity: 1,
+    tag: "©02",
+    quantity: 2,
     category: [{ title: "Mobile App" }, { title: "UX Research" }],
   },
   {
     name: "Gondi UI",
-    img: "/assets/images/imgproject3.avif",
+    tag: "©03",
+    link: "www.gondiui.xyz",
+    des: "(An app for buying, selling, and trading sneakers) tailored for the youth. Jorden focuses on a simple experience with a minimalist and youthful design.",
+    img1: "/assets/images/imgproject3.avif",
+    img2: "/assets/images/imgproject1.avif",
     url: "/case-study/gondi-ui",
-    quantity: 1,
-    category: [{ title: "Branding" }, { title: "Art Direction" }],
   },
   {
     name: "Blog",
-    img: "/assets/images/imgproject4.avif",
+    tag: "©04",
+    link: "www.thienducblog.xyz",
+    des: "(An app for buying, selling, and trading sneakers) tailored for the youth. Jorden focuses on a simple experience with a minimalist and youthful design.",
+    img1: "/assets/images/imgproject4.avif",
+    img2: "/assets/images/imgproject2.avif",
     url: "/case-study/blog",
-    quantity: 1,
-    category: [{ title: "Branding" }, { title: "Art Direction" }],
   },
   {
     name: "Vios",
-    img: "/assets/images/imgproject1.avif",
+    tag: "©05",
+    des: "(An app for buying, selling, and trading sneakers) tailored for the youth. Jorden focuses on a simple experience with a minimalist and youthful design.",
+    img1: "/assets/images/imgproject1.avif",
+    img2: "/assets/images/imgproject5.avif",
     url: "/case-study/vios",
-    quantity: 1,
-    category: [{ title: "Coming Soon" }],
   },
 ];

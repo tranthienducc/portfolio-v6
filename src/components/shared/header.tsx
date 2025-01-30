@@ -1,71 +1,28 @@
 "use client";
-import { menus } from "@/config/routes";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import gsap from "gsap";
 import CustomEase from "gsap/CustomEase";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState<boolean>(false);
-  const pathname = usePathname();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // Assuming the Hero component takes up the full screen height
-      const heroHeight = window.innerHeight;
-      setIsScrolled(window.scrollY >= heroHeight);
-    };
-
-    // Add scroll event listener
-    window.addEventListener("scroll", handleScroll);
-
-    // Initial check
-    handleScroll();
-
-    // Cleanup event listener
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  if (pathname.startsWith("/case-study")) {
-    return null;
-  }
   return (
-    <header className="fixed top-0 z-[999] overflow-hidden flex px-12 pt-7 flex-row justify-between items-start w-full max-w-full">
-      <span className="text-sm font-normal">VN — © 2025</span>
+    <header className="fixed top-0 z-[999] overflow-hidden flex px-12 pt-4 flex-row justify-between items-start w-full max-w-full">
+      <span className="text-sm font-normal text-white">VN — © 2025</span>
 
       <Link
         href="/"
-        className="font-Pangaia text-lg font-bold text-white pl-[2%] flex-shrink-0"
+        className="font-Gridular text-lg font-bold text-white flex-shrink-0"
       >
         td
       </Link>
 
-      {isScrolled ? <HamburgerMenu /> : <Navigation />}
+      <HamburgerMenu />
     </header>
   );
 };
 
 export default Header;
-
-function Navigation() {
-  return (
-    <nav className="flex flex-col items-start gap-5">
-      <ul className="list-none">
-        {menus.map((menu) => (
-          <li key={menu.href} className="cursor-pointer">
-            <span className="text-sm font-medium text-white/80 hover:text-white">
-              {menu.label}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  );
-}
 
 function HamburgerMenu() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -186,14 +143,9 @@ function HamburgerMenu() {
         className={`menu-toggle ${menuOpen ? "opened" : "closed"}`}
         onClick={toggleMenu}
       >
-        <div className="menu-toggle-icon">
-          <div className="hamburger">
-            <div className="menu-bar" data-position="top"></div>
-            <div className="menu-bar" data-position="bottom"></div>
-          </div>
-        </div>
-        <div className="menu-copy">
-          <p>Menu</p>
+        <div className="hamburger">
+          <div className="menu-bar" data-position="top"></div>
+          <div className="menu-bar" data-position="bottom"></div>
         </div>
       </div>
 
@@ -220,11 +172,11 @@ function HamburgerMenu() {
 
           <div className="video-wrapper">
             <Image
-              src="/assets/images/my-self.jpg"
-              loading="lazy"
+              src="/assets/images/client-2.jpg"
               width={475}
               height={264}
               alt="img"
+              priority={true}
             />
           </div>
         </div>

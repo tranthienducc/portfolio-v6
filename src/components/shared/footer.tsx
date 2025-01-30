@@ -7,8 +7,8 @@ const Footer = () => {
     <footer className="relative max-w-full w-full h-[100vh] overflow-hidden z-[20]">
       <div className="shadow-bg"></div>
       <div className="absolute inset-0 z-[0] bg-center bg-cover bg-footer-pattern"></div>
-      <div className="mt-[168px] z-[10] absolute px-4 flex flex-col gap-[2.3rem]">
-        <h1 className="uppercase text-right ml-[644px] font-BiggerDisplay font-bold text-[172px] leading-[164px] text-white">
+      <div className="mt-[86px] z-[10] absolute px-4 flex flex-col gap-[2.3rem]">
+        <h1 className="uppercase text-right ml-[644px] font-BiggerDisplay font-bold text-[162px] leading-[164px] text-white">
           let&apos;s bring your ideas to life
         </h1>
         <button className="ml-[39rem] max-w-[428px] w-full h-[72px] rounded-full p-0 flex items-center justify-center border border-white/20 group transition-all duration-300 hover:bg-[rgb(254,61,0)]">
@@ -174,12 +174,10 @@ const Footer = () => {
                         href="#"
                         className="flex items-center justify-center w-16 h-16 border border-white/20 text-white rounded-full relative overflow-hidden group transition-all duration-300 bg-transparent hover:bg-[rgb(254,61,0)]"
                       >
-                        {/* Mũi tên ban đầu */}
                         <span className="absolute inset-0 flex items-center justify-center transform translate-y-0 opacity-100 group-hover:-translate-y-6 group-hover:opacity-0 transition-all duration-300">
                           <ArrowUp size={26} />
                         </span>
 
-                        {/* Mũi tên xuất hiện khi hover */}
                         <span className="absolute inset-0 flex items-center justify-center transform translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                           <ArrowUp size={26} />
                         </span>

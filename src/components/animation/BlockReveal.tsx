@@ -9,7 +9,6 @@ const BlockReveal = ({ children }: ChildProps) => {
   const pathname = usePathname();
   const isAnimating = useRef(false);
   const [currentPath, setCurrentPath] = useState(pathname);
-  const [isPageReady, setIsPageReady] = useState(false);
 
   useEffect(() => {
     if (!transition.current) return;
@@ -35,7 +34,6 @@ const BlockReveal = ({ children }: ChildProps) => {
         defaults: { ease: "expo.inOut" },
         onComplete: () => {
           initTransition();
-          setIsPageReady(true);
         },
       });
 
@@ -71,7 +69,6 @@ const BlockReveal = ({ children }: ChildProps) => {
     const show = () => {
       if (isAnimating.current) return;
       isAnimating.current = true;
-      setIsPageReady(false);
 
       const tl = gsap.timeline({
         defaults: { ease: "expo.inOut" },

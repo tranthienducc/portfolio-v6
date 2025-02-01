@@ -10,17 +10,20 @@ const Work = () => {
   const bottomProjects = sliderContent.slice(2, 5);
 
   return (
-    <section className="w-full relative mb-[50rem] h-screen max-w-full px-12 pt-10">
+    <section
+      className="w-full relative mb-[50rem] h-screen max-w-full px-[1rem] lg:px-12 pt-10"
+      id="work"
+    >
       <IconsArrowDown />
-      <h2 className="uppercase text-[150px] font-bold font-BiggerDisplay leading-[136px] max-w-[702px] text-[#d1d1c7] mt-16 mb-[96px]">
+      <h2 className="uppercase lg:text-[150px] text-[72px] font-bold font-BiggerDisplay leading-[136px] max-w-[702px] text-[#d1d1c7] mt-16 mb-[96px]">
         selected works.
       </h2>
       <span className="text-[40px] font-bold text-white font-BiggerDisplay flex items-end justify-end mb-6">
-        ▼ 16-25
+        ● 16-25
       </span>
 
-      <div className="items-center rounded-[16px] flex flex-none flex-col flex-nowrap gap-0 h-min justify-center overflow-hidden p-0 relative w-full pl-[14rem]">
-        <div className="content-center items-center flex flex-none flex-row flex-wrap h-min justify-between overflow-hidden p-0 relative w-full">
+      <div className="items-center rounded-[16px] flex flex-none flex-col lg:flex-nowrap gap-0 h-min justify-center overflow-hidden p-0 relative w-full pl-0 lg:pl-[14rem]">
+        <div className="content-center items-center flex lg:flex-none lg:flex-row flex-col lg:flex-wrap h-min justify-between overflow-hidden p-0 relative w-full">
           {topProjects.map((project) => (
             <div
               key={project.name}
@@ -87,7 +90,7 @@ const Work = () => {
           ))}
         </div>
 
-        <div className="work-bottom" data-border="true">
+        <div className="work-bottom lg:flex-row flex-col" data-border="true">
           {bottomProjects.map((project, index) => (
             <div
               key={project.name}
@@ -106,7 +109,7 @@ const Work = () => {
                 href={project.url}
                 className="items-center flex flex-none flex-row flex-nowrap gap-14 h-min justify-center overflow-hidden p-8 relative w-full"
               >
-                <div className="items-center rounded-lg flex flex-shrink-0 flex-grow basis-0 flex-row flex-nowrap gap-14 h-min justify-center overflow-hidden p-0 relative w-[1px]">
+                <div className="items-center rounded-lg flex flex-shrink-0 flex-grow basis-0 flex-row flex-nowrap gap-14 h-min justify-center overflow-hidden p-0 relative w-full lg:w-[1px]">
                   <div
                     className={`aspect-ratio-custom rounded-lg flex-shrink-0 flex-grow basis-0 h-auto min-h-[${
                       index === 0 ? "187" : "145"

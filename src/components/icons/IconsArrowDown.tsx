@@ -8,8 +8,8 @@ const IconsArrowDown = () => {
       strokeLinecap="round"
       strokeLinejoin="round"
       className="hidden lg:block"
-      color="D1D1C7"
-      style={{ color: "D1D1C7" }}
+      color="#D1D1C7"
+      style={{ color: "#D1D1C7" }}
       height="64"
       width="64"
       xmlns="http://www.w3.org/2000/svg"

@@ -19,7 +19,6 @@ export default {
         "2": "1 0 0px",
       },
       backgroundImage: {
-        "hero-pattern": "url('/assets/images/bg-robot.png')",
         "footer-pattern": "url('/assets/images/bg-footer.avif')",
       },
       colors: {

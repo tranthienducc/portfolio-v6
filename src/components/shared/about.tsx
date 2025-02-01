@@ -3,35 +3,23 @@ import Image from "next/image";
 
 const About = () => {
   return (
-    <section className="mb-[20rem] w-full max-w-full px-12 py-10">
+    <section
+      className="mb-48 lg:mb-[20rem] w-full max-w-full px-[1rem] lg:px-12 pt-16 lg:py-10"
+      id="about"
+    >
       <div className="lg:gap-y-space-2xl gap-y-space-lg flex flex-col">
         <div className="custom-grid">
           <IconsArrowDown />
-          <h2 className="section-heading relative z-30 col-span-full flex w-full flex-col leading-none text-[#d1d1c7] mix-blend-exclusion lg:col-span-7 lg:col-start-6 text-[121.531px] font-semibold">
-            <span
-              aria-hidden="true"
-              className="leading-[121.531px] tracking-[-3.03827px]"
-            >
-              Designer,
-            </span>
-            <span
-              aria-hidden="true"
-              className="leading-[121.531px] tracking-[-3.03827px]"
-            >
-              Developer,
-            </span>
-            <span
-              aria-hidden="true"
-              className="leading-[121.531px] tracking-[-3.03827px]"
-            >
-              Creator /
-            </span>
+          <h2 className="section-heading relative z-30 col-span-full flex w-full flex-col lg:leading-none text-[#d1d1c7] mix-blend-exclusion lg:col-span-7 lg:col-start-6 font-BiggerDisplay leading-[70.531px]">
+            <span aria-hidden="true">Designer,</span>
+            <span aria-hidden="true">Developer,</span>
+            <span aria-hidden="true">Creator /</span>
           </h2>
         </div>
-        <div className="lg:gap-y-space-2xl col-span-full gap-y-space-lg custom-grid">
+        <div className="lg:gap-y-space-2xl col-span-full gap-y-space-lg lg:custom-grid flex flex-col">
           <div className="pointer-events-none relative z-0 col-span-4 flex w-full items-center overflow-clip rounded-md md:items-end">
             <Image
-              src="/assets/images/client-2.jpg"
+              src="/assets/images/client-2.avif"
               alt="img-profile"
               loading="lazy"
               width={460}

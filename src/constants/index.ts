@@ -80,7 +80,7 @@ export const testimonials = [
       },
     ],
     num: 1,
-    url: "/assets/images/client-1.jpg",
+    url: "/assets/images/client-1.avif",
   },
   {
     message:
@@ -99,7 +99,7 @@ export const testimonials = [
       },
     ],
     num: 2,
-    url: "/assets/images/client-2.jpg",
+    url: "/assets/images/client-2.avif",
   },
 ];
 

@@ -65,7 +65,7 @@ export const cards = [
 ];
 export const testimonials = [
   {
-    message: "Huy is phenomenal. An absolute pleasure to work with!",
+    message: "Duc is phenomenal. An absolute pleasure to work with!",
     author: "Daniel Long",
     position: "Founder's Associate @Volup",
     services: [
@@ -84,7 +84,7 @@ export const testimonials = [
   },
   {
     message:
-      "Beyond standards. Huy grasped our vision and brought it to life brilliantly.",
+      "Beyond standards. Duc grasped our vision and brought it to life brilliantly.",
     author: "Dylan Kim",
     position: "Co-founder @MLV Ignite",
     services: [

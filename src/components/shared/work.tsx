@@ -15,7 +15,7 @@ const Work = () => {
       id="work"
     >
       <IconsArrowDown />
-      <h2 className="uppercase lg:text-[150px] text-[72px] font-bold font-BiggerDisplay leading-[136px] max-w-[702px] text-[#d1d1c7] mt-16 mb-[96px]">
+      <h2 className="uppercase lg:text-[150px] text-[72px] font-bold font-BiggerDisplay leading-[71px] lg:leading-[136px] max-w-[702px] text-[#d1d1c7] mt-16 mb-[96px]">
         selected works.
       </h2>
       <span className="text-[40px] font-bold text-white font-BiggerDisplay flex items-end justify-end mb-6">

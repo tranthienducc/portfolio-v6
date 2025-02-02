@@ -38,7 +38,7 @@ const Services = () => {
                   alt="abstract-1"
                   width={500}
                   height={500}
-                  className="size-[200px]"
+                  className="size-[80px] lg:size-[200px]"
                   loading="lazy"
                 />
               </div>
@@ -75,7 +75,7 @@ const Services = () => {
                   alt="abstract-2"
                   width={500}
                   height={500}
-                  className="size-[200px]"
+                  className="size-[80px] lg:size-[200px]"
                   loading="lazy"
                 />
               </div>
@@ -110,7 +110,7 @@ const Services = () => {
           <div className="w-full flex flex-col flex-nowrap lg:flex-row">
             <div className="max-w-full flex flex-flow w-full relative justify-between p-4 border border-[#ece6d5] text-[#ece6d5] lg:min-h-full min-h-[70vh]">
               <div className="flex flex-flow gap-y-[8px]">
-                <h2 className="font-BiggerDisplay text-[5.653rem] lg:text-[127.888px] font-bold uppercase leading-[107.426px]">
+                <h2 className="font-BiggerDisplay text-[4.653rem] md:text-[5.653rem] lg:text-[127.888px] font-bold uppercase leading-[107.426px]">
                   Development
                 </h2>
                 <p className="font-normal text-[16px]">
@@ -142,7 +142,7 @@ const Services = () => {
                   alt="abstract-1"
                   width={500}
                   height={500}
-                  className="size-[200px]"
+                  className="size-[80px] lg:size-[200px]"
                   loading="lazy"
                 />
               </div>
@@ -175,7 +175,7 @@ const Services = () => {
                   alt="abstract-1"
                   width={500}
                   height={500}
-                  className="size-[200px]"
+                  className="size-[80px] lg:size-[200px]"
                   loading="lazy"
                 />
               </div>
@@ -213,7 +213,7 @@ const Services = () => {
                 alt="abstract-1"
                 width={500}
                 height={500}
-                className="size-[200px]"
+                className="size-[80px] lg:size-[200px]"
                 loading="lazy"
               />
             </div>
@@ -267,7 +267,7 @@ const Services = () => {
                 alt="abstract-1"
                 width={500}
                 height={500}
-                className="size-[200px]"
+                className="size-[80px] lg:size-[200px]"
                 loading="lazy"
               />
             </div>

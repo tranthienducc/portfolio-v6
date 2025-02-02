@@ -35,14 +35,14 @@ const Hero = () => {
         className="object-cover absolute z-0 lg:z-10 top-[44px] left-[0rem] lg:left-[20rem] w-[27rem] lg:w-[44rem]"
       />
 
-      <h1 className="font-BiggerDisplay font-bold uppercase text-[5.3rem] whitespace-nowrap lg:text-[13.5rem] text-[rgb(254,61,0)] z-0 pt-[7rem] lg:pt-[2rem]">
+      <h1 className="font-BiggerDisplay font-bold uppercase text-[4.3rem] md:text-[5.3rem] whitespace-nowrap lg:text-[13.5rem] text-[rgb(254,61,0)] z-0 pt-[7rem] lg:pt-[2rem]">
         Tran Thien Duc
       </h1>
       <div className="flex flex-row items-baseline lg:items-center gap-[13.5rem] lg:gap-[42.5rem]">
-        <p className="font-BiggerDisplay font-bold uppercase text-[6.5rem] lg:text-[13.5rem] text-[rgb(254,61,0)] z-0">
+        <p className="font-BiggerDisplay font-bold uppercase text-[3.5rem] md:text-[6.5rem] lg:text-[13.5rem] text-[rgb(254,61,0)] z-0">
           By .
         </p>
-        <p className="font-BiggerDisplay font-bold uppercase text-[6.5rem] lg:text-[13.5rem] text-[rgb(254,61,0)] z-0">
+        <p className="font-BiggerDisplay font-bold uppercase text-[3.5rem] md:text-[6.5rem] lg:text-[13.5rem] text-[rgb(254,61,0)] z-0">
           the
         </p>
       </div>
@@ -63,7 +63,7 @@ const Hero = () => {
         <div className="h-[1px] bg-red-200/45 w-full"></div>
       </div>
 
-      <div className="flex items-start gap-3 flex-row pt-20 pb-28 lg:pb-12 w-full justify-end z-0">
+      <div className="flex items-start gap-3 flex-row pt-20 pb-20 md:pb-28 lg:pb-12 w-full justify-end z-0">
         <IconsFlower />
         <div className="flex flex-col items-start">
           <span className="font-BiggerDisplay uppercase text-3xl font-bold pl-5 lg:text-black text-white">
@@ -76,10 +76,10 @@ const Hero = () => {
       </div>
 
       <div className="flex flex-row items-center justify-between w-full">
-        <p className="font-BiggerDisplay font-bold uppercase text-[5.5rem] lg:text-[13.5rem] text-[rgb(254,61,0)] z-[20]">
+        <p className="font-BiggerDisplay font-bold uppercase text-[4.5rem] md:text-[5.5rem] lg:text-[13.5rem] text-[rgb(254,61,0)] z-[20]">
           creative
         </p>
-        <p className="font-BiggerDisplay font-bold uppercase text-[5.5rem] lg:text-[13.5rem] text-[rgb(254,61,0)] z-[20]">
+        <p className="font-BiggerDisplay font-bold uppercase text-[4.5rem] md:text-[5.5rem] lg:text-[13.5rem] text-[rgb(254,61,0)] z-[20]">
           ●25
         </p>
       </div>

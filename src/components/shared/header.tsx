@@ -10,12 +10,12 @@ const Header = () => {
 
       <Link
         href="/"
-        className="font-Gridular text-lg font-bold text-black flex-shrink-0"
+        className="font-Gridular  text-sm lg:text-lg font-bold text-black flex-shrink-0"
       >
         td
       </Link>
 
-      <span className="text-sm font-normal text-black font-Gridular">
+      <span className="text-xs lg:text-sm font-normal text-black font-Gridular">
         VN — © 2025
       </span>
     </header>

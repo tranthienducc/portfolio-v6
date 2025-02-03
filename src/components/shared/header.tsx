@@ -42,6 +42,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
   const [activeSection, setActiveSection] = useState("hero");
   const menuRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLDivElement>(null);
+  const isMobile = window.innerWidth <= 1024;
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -67,12 +68,15 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
   }, [menuOpen]);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     const menuContainer = menuRef.current;
     if (menuContainer) {
       if (menuOpen) {
         menuContainer.style.left = "0";
         animateMenuItems("in");
       } else {
+        const isMobile = window.innerWidth <= 1024;
+        menuContainer.style.left = isMobile ? "0" : "-50%";
         animateMenuItems("out");
       }
     }
@@ -128,6 +132,8 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
     { label: "Contact", id: "contact" },
   ];
 
+  if (typeof window === "undefined") return;
+
   return (
     <div className="relative z-20">
       <div
@@ -153,7 +159,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
           ref={menuRef}
           className="menu-container fixed transform translate-y-[-50%] h-full flex items-center justify-center z-[2] p-0 lg:w-[45%] w-full lg:top-[48%] top-[50%] lg:left-[-50%] left-0 lg:p-[1.5em]"
           style={{
-            left: window.innerWidth <= 1024 ? "0" : "-50%",
+            left: isMobile ? "0" : "-50%",
             transform: `translateX(${
               menuOpen ? "0" : "-100%"
             }) translateY(-50%)`,

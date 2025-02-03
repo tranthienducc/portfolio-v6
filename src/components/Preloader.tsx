@@ -8,6 +8,7 @@ const Preloader = () => {
   const tlRef = useRef<gsap.core.Timeline | null>(null);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     const windowWidth = window.innerWidth;
     const wrapperWidth = 180;
     const finalPosition = windowWidth - wrapperWidth;

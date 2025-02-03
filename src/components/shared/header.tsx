@@ -73,9 +73,6 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
         menuContainer.style.left = "0";
         animateMenuItems("in");
       } else {
-        // Use window.innerWidth to check if we're on mobile
-        const isMobile = window.innerWidth <= 1024;
-        menuContainer.style.left = isMobile ? "0" : "-50%";
         animateMenuItems("out");
       }
     }

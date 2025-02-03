@@ -54,12 +54,21 @@ const Work = () => {
 
   return (
     <section
-      className="w-full relative h-full max-w-full px-[1rem] lg:px-0 pt-10 mb-10 overflow-hidden"
+      className="w-full relative h-full max-w-full px-[1rem] lg:px-0 mb-[35.5rem]"
       id="work"
     >
-      <div className="absolute bottom-0 left-[5rem] w-full h-full flex items-center justify-center rounded-2xl">
+      <div className="mb-[16rem] flex flex-col gap-5 px-[1rem] lg:px-12 max-w-[400px] lg:max-w-[1000px] w-full">
+        <h2 className="text-xs lg:text-sm tracking-[1.05em] font-semibold text-[#b7ab98] uppercase">
+          work
+        </h2>
+        <p className="text-[40px] lg:text-[70px] font-bold leading-[95%] text-[#b7ab98]">
+          I worked with some of the most <span>innovative</span> industry
+          leaders to help build their top-notch products
+        </p>
+      </div>
+      <div className="absolute  bottom-0 left-0 w-full h-full flex items-center justify-center rounded-2xl">
         <div
-          className="absolute h-[300px] lg:h-[766px] transition-opacity duration-500 bottom-[26rem] lg:bottom-[88px]"
+          className="absolute h-[300px] lg:h-[423px] transition-opacity duration-500 top-[26rem] lg:top-[43rem] lg:left-[27.75rem]"
           style={{ opacity: selectedProject === null ? 1 : 0, zIndex: 0 }}
         >
           <Image
@@ -74,7 +83,7 @@ const Work = () => {
         {data.map((item, i) => (
           <div
             key={i}
-            className="absolute w-[200px]  lg:w-[400px] h-[100px] lg:h-[300px] transition-opacity duration-500"
+            className="w-[200px] lg:w-[400px] h-[100px] lg:h-[300px] transition-opacity duration-500"
             style={{ opacity: selectedProject === i ? 1 : 0, zIndex: 1 }}
           >
             <Image
@@ -151,7 +160,7 @@ function Title({ data, setSelectedProject }: TitleProps) {
     >
       <Link
         href={`/case-study/${data.url}`}
-        className="inline-block pl-0 lg:pl-[10%]"
+        className="inline-block pl-0 lg:pl-[4%]"
         onMouseOver={() => {
           if (i !== undefined) setSelectedProject(i);
         }}

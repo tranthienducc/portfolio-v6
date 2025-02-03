@@ -4,7 +4,7 @@ import Image from "next/image";
 const About = () => {
   return (
     <section
-      className="mb-48 lg:mb-[20rem] w-full max-w-full px-[1rem] lg:px-12 pt-16 lg:py-10"
+      className="py-[8.75rem] w-full max-w-full px-[1rem] lg:px-12 pt-16 lg:py-[19rem]"
       id="about"
     >
       <div className="lg:gap-y-space-2xl gap-y-space-lg flex flex-col">

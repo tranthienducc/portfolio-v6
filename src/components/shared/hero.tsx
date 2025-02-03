@@ -7,16 +7,16 @@ const Hero = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Check width khi component mount
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth < 768);
     };
 
-    checkScreenSize(); // Kiểm tra ngay lúc render
-    window.addEventListener("resize", checkScreenSize); // Lắng nghe thay đổi kích thước
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
 
-    return () => window.removeEventListener("resize", checkScreenSize); // Cleanup event listener
+    return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
+
   return (
     <section
       className="relative mb-[7%] h-screen flex flex-col px-[1rem] lg:px-12 py-10 w-full bg-[#f2f2f2] text-black leading-[1.4] lg:leading-[0.8]"

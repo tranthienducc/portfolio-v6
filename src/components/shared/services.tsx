@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Services = () => {
   return (
-    <section className="my-[20rem] px-[1rem] lg:px-12" id="services">
+    <section className="mb-[20rem] px-[1rem] lg:px-12" id="services">
       <div className="flex flex-col items-stretch justify-end flex-nowrap w-full h-full">
         <div className="w-full h-auto lg:h-[90vh] flex lg:flex-row flex-col">
           <div className="w-full flex flex-col flex-nowrap lg:flex-row">

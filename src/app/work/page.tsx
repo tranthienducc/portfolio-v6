@@ -64,7 +64,7 @@ const projects = [
 ];
 
 const CategoryBadge = ({ text }: { text: string }) => (
-  <span className="text-sm font-normal text-[#dfdfdf] opacity-[.7] border border-white/20 rounded-full py-2 px-3 whitespace-nowrap">
+  <span className="text-sm font-normal text-[#dfdfdf] opacity-[.7] border border-white/20 rounded-full px-2 py-1 lg:py-2 lg:px-3 whitespace-nowrap">
     {text}
   </span>
 );
@@ -85,7 +85,7 @@ const ProjectImages = ({ images }: { images: string[] }) => {
 
   useEffect(() => {
     window.addEventListener("scroll", checkVisibility);
-    checkVisibility(); // Kiểm tra ngay khi trang được tải
+    checkVisibility();
 
     return () => window.removeEventListener("scroll", checkVisibility);
   }, []);
@@ -97,7 +97,7 @@ const ProjectImages = ({ images }: { images: string[] }) => {
         isVisible ? "scroll-animation-trigger" : "scroll-animation"
       }`}
     >
-      <div className="aspect-ratio-1 rounded-2xl flex-grow-0 flex-shrink-0 basis-auto h-auto min-h-[436px] overflow-hidden relative w-[66%]">
+      <div className="aspect-ratio-1 rounded-2xl flex-grow-0 flex-shrink-0 basis-auto h-auto min-h-[166px] lg:min-h-[436px] overflow-hidden relative w-[66%]">
         <div className="absolute inset-0">
           <Image
             src={images[0]}
@@ -126,7 +126,7 @@ const ProjectImages = ({ images }: { images: string[] }) => {
 };
 
 const Header = () => (
-  <div className="flex flex-row items-center gap-[340px]">
+  <div className="flex flex-row items-center gap-[70px] md:gap-[100px] lg:gap-[340px]">
     <div className="flex flex-row items-center w-full justify-between">
       <ul className="flex flex-row items-center gap-11 text-sm font-normal text-[#dfdfdf] opacity-[.7]">
         <li>• /02</li>
@@ -175,10 +175,7 @@ const ProjectSection = ({ project }: { project: Project }) => {
   return (
     <>
       <div className="flex flex-row justify-between items-center w-full">
-        <h2
-          ref={titleRef}
-          className="text-[146px] font-BiggerDisplay font-bold uppercase"
-        >
+        <h2 className="text-[41px] lg:text-[146px] font-BiggerDisplay font-bold uppercase">
           {project.name}
         </h2>
         <div className="items-center flex flex-row flex-nowrap gap-0 h-min justify-start overflow-visible p-0 relative w-min">
@@ -190,7 +187,7 @@ const ProjectSection = ({ project }: { project: Project }) => {
       <div className="flex flex-row overflow-visible relative w-full gap-2 image-container">
         <Link
           href={project.url}
-          className="place-content-center items-center flex flex-grow-0 basis-auto flex-shrink-0 gap-14 overflow-hidden pb-0 px-4 relative w-full"
+          className="place-content-center items-center flex flex-grow-0 basis-auto flex-shrink-0 gap-14 overflow-hidden pb-0 px-0 lg:px-4 relative w-full"
         >
           <ProjectImages images={project.images} />
         </Link>
@@ -253,7 +250,7 @@ const IndexNumber = ({ currentIndex }: { currentIndex: string }) => {
 
   return (
     <div
-      className="fixed bottom-0 left-2 overflow-hidden flex flex-col justify-between h-full"
+      className="hidden lg:fixed bottom-0 left-2 overflow-hidden lg:flex flex-col justify-between h-full"
       style={{ maxHeight: "45rem", overflow: "hidden" }}
     >
       <div className="w-12 flex flex-col justify-between bg-black p-3 rounded-lg gap-3">
@@ -308,9 +305,9 @@ const WorkPage = () => {
   }, []);
 
   return (
-    <article className="relative pt-[2rem] px-11 h-screen">
+    <article className="relative pt-[2rem] px-[1rem] lg:px-11 h-screen">
       <Header />
-      <div className="pl-[382px] flex flex-col gap-[8.75rem] items-start mt-[2.5rem] w-full">
+      <div className="pl-0 md:pl-[232px] lg:pl-[382px] flex flex-col gap-[4.75rem] lg:gap-[8.75rem] items-start mt-[2.5rem] w-full">
         {projects.map((project) => (
           <div id={`project-${project.id}`} key={project.id} className="w-full">
             <ProjectSection project={project} />

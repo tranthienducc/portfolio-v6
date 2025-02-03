@@ -154,41 +154,33 @@ const BlockReveal = ({ children }: ChildProps) => {
     <>
       <section ref={transition} className="transitioned">
         <div className="transition-wrapper">
-          <div className="transition-element">
-            <h1>W</h1>
-            <h1>A</h1>
+          <div className="transition-element lg:text-[10rem] text-[3rem]">
+            <h1>T</h1>
+            <h1>H</h1>
+            <h1>I</h1>
+            <h1>E</h1>
+            <h1>N</h1>
             <h1>D</h1>
-            <h1>M</h1>
+            <h1>U</h1>
+            <h1>C</h1>
           </div>
 
           <div className="transition-columns">
             <div className="transition-column">
-              <div className="transition-column-text">
-                <span>We</span>
-                <span>W</span>
-              </div>
+              <div className="transition-column-text"></div>
             </div>
 
             <div className="transition-column">
-              <div className="transition-column-text">
-                <span>Are</span>
-                <span>A</span>
-              </div>
+              <div className="transition-column-text"></div>
             </div>
 
             <div className="transition-column"></div>
 
             <div className="transition-column">
-              <div className="transition-column-text">
-                <span>Digital</span>
-                <span>D</span>
-              </div>
+              <div className="transition-column-text"></div>
             </div>
             <div className="transition-column">
-              <div className="transition-column-text">
-                <span>Makers</span>
-                <span>M</span>
-              </div>
+              <div className="transition-column-text"></div>
             </div>
           </div>
         </div>

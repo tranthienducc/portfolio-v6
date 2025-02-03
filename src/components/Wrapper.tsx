@@ -22,7 +22,7 @@ const Wrapper = ({ children }: ChildProps) => {
     };
   }, [isLoading]);
   return (
-    <div className="relative">
+    <div className="relative w-full">
       {/* Preloader */}
       {isLoading && (
         <div className="fixed inset-0 bg-black z-[9999]">

@@ -152,7 +152,7 @@ export default {
           aspectRatio: "1.56433 / 1",
         },
         ".aspect-ratio-2": {
-          aspectRatio: "-0.43567",
+          aspectRatio: "1.43567",
         },
         ".ease-in-out-cubic": {
           transitionTimingFunction: "cubic-bezier(.65,0,0,1)",

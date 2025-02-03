@@ -79,44 +79,44 @@ const Preloader = () => {
       <div className="count-wrapper">
         <div className="counter-num">
           <div className="digit">
-            <h1>9</h1>
+            <h1 className="lg:text-[360px] text-[105px]">9</h1>
           </div>
           <div className="digit">
-            <h1>8</h1>
+            <h1 className="lg:text-[360px] text-[105px]">8</h1>
           </div>
           <div className="digit">
-            <h1>7</h1>
+            <h1 className="lg:text-[360px] text-[105px]">7</h1>
           </div>
           <div className="digit">
-            <h1>4</h1>
+            <h1 className="lg:text-[360px] text-[105px]">4</h1>
           </div>
           <div className="digit">
-            <h1>2</h1>
+            <h1 className="lg:text-[360px] text-[105px]">2</h1>
           </div>
           <div className="digit">
-            <h1>0</h1>
+            <h1 className="lg:text-[360px] text-[105px]">0</h1>
           </div>
         </div>
       </div>
       <div className="count-wrapper">
         <div className="counter-num">
           <div className="digit">
-            <h1>9</h1>
+            <h1 className="lg:text-[360px] text-[105px]">9</h1>
           </div>
           <div className="digit">
-            <h1>5</h1>
+            <h1 className="lg:text-[360px] text-[105px]">5</h1>
           </div>
           <div className="digit">
-            <h1>9</h1>
+            <h1 className="lg:text-[360px] text-[105px]">9</h1>
           </div>
           <div className="digit">
-            <h1>7</h1>
+            <h1 className="lg:text-[360px] text-[105px]">7</h1>
           </div>
           <div className="digit">
-            <h1>4</h1>
+            <h1 className="lg:text-[360px] text-[105px]">4</h1>
           </div>
           <div className="digit">
-            <h1>0</h1>
+            <h1 className="lg:text-[360px] text-[105px]">0</h1>
           </div>
         </div>
       </div>

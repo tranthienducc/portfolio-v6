@@ -40,9 +40,21 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
   menuOpen,
 }) => {
   const [activeSection, setActiveSection] = useState("hero");
+  const [isMobile, setIsMobile] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLDivElement>(null);
-  const isMobile = window.innerWidth <= 1024;
+
+  // Initialize isMobile state after component mounts
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 1024);
+
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1024);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -68,19 +80,17 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
   }, [menuOpen]);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
     const menuContainer = menuRef.current;
     if (menuContainer) {
       if (menuOpen) {
         menuContainer.style.left = "0";
         animateMenuItems("in");
       } else {
-        const isMobile = window.innerWidth <= 1024;
         menuContainer.style.left = isMobile ? "0" : "-50%";
         animateMenuItems("out");
       }
     }
-  }, [menuOpen]);
+  }, [menuOpen, isMobile]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -131,8 +141,6 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
     { label: "Testimonial", id: "testimonial" },
     { label: "Contact", id: "contact" },
   ];
-
-  if (typeof window === "undefined") return;
 
   return (
     <div className="relative z-20">

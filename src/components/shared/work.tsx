@@ -4,6 +4,7 @@ import { Dispatch, SetStateAction, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 const data = [
   {
@@ -54,7 +55,7 @@ const Work = () => {
 
   return (
     <section
-      className="w-full relative h-full max-w-full px-[1rem] lg:px-0 mb-[35.5rem]"
+      className="w-full relative h-full max-w-full px-[1rem] lg:px-0 mb-[44.5rem]"
       id="work"
     >
       <div className="mb-[16rem] flex flex-col gap-5 px-[1rem] lg:px-12 max-w-[400px] lg:max-w-[1000px] w-full">
@@ -65,6 +66,13 @@ const Work = () => {
           I worked with some of the most <span>innovative</span> industry
           leaders to help build their top-notch products
         </p>
+        <Link
+          href="/work"
+          className="items-center flex flex-none flex-row flex-nowrap justify-center overflow-hidden p-2 relative w-[208px] h-16 rounded-3xl bg-inherit border border-white/20 hover:bg-[rgb(254,61,0)] transition-all text-white gap-4 py-4 mt-[5rem] duration-300"
+        >
+          <span className="text-lg font-normal">All Works</span>
+          <ArrowRight size={24} />
+        </Link>
       </div>
       <div className="absolute  bottom-0 left-0 w-full h-full flex items-center justify-center rounded-2xl">
         <div
@@ -83,7 +91,7 @@ const Work = () => {
         {data.map((item, i) => (
           <div
             key={i}
-            className="w-[200px] lg:w-[400px] h-[100px] lg:h-[300px] transition-opacity duration-500"
+            className="w-[200px] lg:w-[400px] h-[100px] lg:h-[300px] transition-opacity duration-500 absolute bottom-0 left-0"
             style={{ opacity: selectedProject === i ? 1 : 0, zIndex: 1 }}
           >
             <Image

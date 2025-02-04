@@ -305,17 +305,23 @@ const WorkPage = () => {
   }, []);
 
   return (
-    <article className="relative pt-[2rem] px-[1rem] lg:px-11 h-screen">
-      <Header />
-      <div className="pl-0 md:pl-[232px] lg:pl-[382px] flex flex-col gap-[4.75rem] lg:gap-[8.75rem] items-start mt-[2.5rem] w-full">
-        {projects.map((project) => (
-          <div id={`project-${project.id}`} key={project.id} className="w-full">
-            <ProjectSection project={project} />
-          </div>
-        ))}
-      </div>
-      <IndexNumber currentIndex={currentIndex} />
-    </article>
+    <>
+      <main className="relative pt-[2rem] px-[1rem] lg:px-11 h-screen">
+        <Header />
+        <div className="pl-0 md:pl-[232px] lg:pl-[382px] flex flex-col gap-[4.75rem] lg:gap-[8.75rem] items-start mt-[2.5rem] w-full">
+          {projects.map((project) => (
+            <div
+              id={`project-${project.id}`}
+              key={project.id}
+              className="w-full"
+            >
+              <ProjectSection project={project} />
+            </div>
+          ))}
+        </div>
+        <IndexNumber currentIndex={currentIndex} />
+      </main>
+    </>
   );
 };
 export default WorkPage;

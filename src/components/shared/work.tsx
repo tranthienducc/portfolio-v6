@@ -66,14 +66,17 @@ const Work = () => {
           I worked with some of the most <span>innovative</span> industry
           leaders to help build their top-notch products
         </p>
-        <Link
-          href="/work"
-          className="items-center flex flex-none flex-row flex-nowrap justify-center overflow-hidden p-2 relative w-[208px] h-16 rounded-3xl bg-inherit border border-white/20 hover:bg-[rgb(254,61,0)] transition-all text-white gap-4 py-4 mt-[5rem] duration-300"
-        >
-          <span className="text-lg font-normal">All Works</span>
-          <ArrowRight size={24} />
-        </Link>
+        <div className="mb-[5rem] flex z-[2] justify-end items-end w-full">
+          <Link
+            href="/work"
+            className="items-center flex flex-none flex-row flex-nowrap justify-center overflow-hidden p-2 relative w-[208px] h-16 rounded-3xl bg-inherit border border-white/20 hover:bg-[rgb(254,61,0)] transition-all text-white gap-4 py-4 mt-[5rem] duration-300"
+          >
+            <span className="text-lg font-normal">All Works</span>
+            <ArrowRight size={24} />
+          </Link>
+        </div>
       </div>
+
       <div className="absolute  bottom-0 left-0 w-full h-full flex items-center justify-center rounded-2xl">
         <div
           className="absolute h-[300px] lg:h-[423px] transition-opacity duration-500 top-[26rem] lg:top-[43rem] lg:left-[27.75rem]"
@@ -88,22 +91,6 @@ const Work = () => {
             className="w-full h-full object-cover opacity-20"
           />
         </div>
-        {data.map((item, i) => (
-          <div
-            key={i}
-            className="w-[200px] lg:w-[400px] h-[100px] lg:h-[300px] transition-opacity duration-500 absolute bottom-0 left-0"
-            style={{ opacity: selectedProject === i ? 1 : 0, zIndex: 1 }}
-          >
-            <Image
-              width={1300}
-              height={1300}
-              priority={true}
-              src={item.img}
-              alt={item.title}
-              className="w-full h-full object-cover rounded-2xl"
-            />
-          </div>
-        ))}
       </div>
       <div className="absolute w-full z-[1]">
         <Titles data={data} setSelectedProject={setSelectedProject} />

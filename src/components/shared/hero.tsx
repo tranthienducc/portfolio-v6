@@ -26,14 +26,14 @@ const Hero = () => {
       <Image
         src={
           isMobile
-            ? "/assets/images/bg-robot.png"
+            ? "/assets/images/bg-robot.webp"
             : "/assets/images/bg-robot.webp"
         }
         alt="bg-robot"
         priority={true}
         width={1300}
         height={1300}
-        className="object-cover absolute z-0 lg:z-10 top-[44px] left-[0rem] lg:left-[20rem] w-[27rem] lg:w-[44rem]"
+        className="object-cover absolute z-0 lg:z-10 top-[190px] left-[-21px] lg:left-[20rem] w-[27rem] lg:w-[44rem] lg:top-20 lg:h-[47rem] h-[27rem]"
       />
 
       <h1 className="font-BiggerDisplay font-bold uppercase text-[4.3rem] md:text-[5.3rem] whitespace-nowrap lg:text-[13.5rem] text-[rgb(254,61,0)] z-0 pt-[7rem] lg:pt-[2rem]">

@@ -1,5 +1,6 @@
 "use client";
 import { Filter, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
@@ -14,11 +15,14 @@ const Header = () => {
     >
       <HamburgerMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
-      <Link
-        href="/"
-        className="font-Gridular  text-sm lg:text-lg font-bold text-white flex-shrink-0"
-      >
-        td
+      <Link href="/">
+        <Image
+          src="/assets/icons/icon-logo.svg"
+          alt="logo"
+          width={24}
+          height={24}
+          className="size-[24px]"
+        />
       </Link>
 
       <span className="text-xs lg:text-sm font-normal text-white font-Gridular">

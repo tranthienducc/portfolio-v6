@@ -1,277 +1,221 @@
+"use client";
+import Heading from "@/components/heading";
 import Image from "next/image";
+import React, { useState, useRef } from "react";
+
+const services = [
+  {
+    id: "01",
+    title: "Strategy",
+    desc: "Clear, actionable plans to align business vision with long-term goals and measurable success.",
+    service_image: "/assets/images/big-img-2.avif",
+    avatar: "/assets/images/client-1.avif",
+    quote:
+      "We are committed to delivering exceptional results through our strategic approach.",
+  },
+  {
+    id: "02",
+    title: "Brand Identity",
+    desc: "Memorable designs that capture the essence of your brand and connect with your audience.",
+    service_image: "/assets/images/big-img-2.avif",
+    avatar: "/assets/images/client-1.avif",
+    quote:
+      "We are committed to delivering exceptional results through our strategic approach.",
+  },
+  {
+    id: "03",
+    title: "Web Design",
+    desc: "Beautiful, user-friendly websites that create seamless experiences and elevate your business.",
+    service_image: "/assets/images/big-img-2.avif",
+    avatar: "/assets/images/client-1.avif",
+    quote:
+      "We are committed to delivering exceptional results through our strategic approach.",
+  },
+  {
+    id: "04",
+    title: "Web Development",
+    desc: "Webflow/Framer sites designed to grow with your business and perform at the highest level.",
+    service_image: "/assets/images/big-img-2.avif",
+    avatar: "/assets/images/client-2.avif",
+    quote:
+      "We are committed to delivering exceptional results through our strategic approach.",
+  },
+  {
+    id: "05",
+    title: "Web Apps",
+    desc: "Custom applications tailored to streamline operations and enhance user engagement.",
+    service_image: "/assets/images/test3.jpg",
+    avatar: "/assets/images/client-1.avif",
+    quote:
+      "We are committed to delivering exceptional results through our strategic approach.",
+  },
+  {
+    id: "06",
+    title: "UI/UX",
+    desc: "User-centered designs that enhance usability, streamline interactions, and elevate experience.",
+    service_image: "/assets/images/test4.jpg",
+    avatar: "/assets/images/client-2.avif",
+    quote:
+      "We are committed to delivering exceptional results through our strategic approach.",
+  },
+  {
+    id: "07",
+    title: "Pitch Decks",
+    desc: "Compelling presentations that tell your story, showcase value, and captivate investors.",
+    service_image: "/assets/images/new.jpg",
+    avatar: "/assets/images/client-1.avif",
+    quote:
+      "We are committed to delivering exceptional results through our strategic approach.",
+  },
+  {
+    id: "08",
+    title: "Illustrations",
+    desc: "Unique and engaging visuals that enhance storytelling, captivate audiences, and bring ideas to life.",
+    service_image: "/assets/images/test4.jpg",
+    avatar: "/assets/images/client-1.avif",
+    quote:
+      "We are committed to delivering exceptional results through our strategic approach.",
+  },
+];
 
 const Services = () => {
-  return (
-    <section className="mb-[20rem] px-[1rem] lg:px-12" id="services">
-      <div className="flex flex-col items-stretch justify-end flex-nowrap w-full h-full">
-        <div className="w-full h-auto lg:h-[90vh] flex lg:flex-row flex-col">
-          <div className="w-full flex flex-col flex-nowrap lg:flex-row">
-            <div className="max-w-full flex flex-flow w-full relative justify-between p-4 border border-[#ece6d5] text-[#ece6d5] lg:min-h-full min-h-[70vh]">
-              <div className="flex flex-flow gap-y-[8px]">
-                <h2 className="font-BiggerDisplay text-[5.653rem] lg:text-[127.888px] font-bold uppercase leading-[107.426px]">
-                  Product design
-                </h2>
-                <p className="font-normal text-[16px]">
-                  SSO website complete redesign
-                </p>
-              </div>
-              <div className="flex justify-between flex-row w-full items-start">
-                <div className="flex flex-col">
-                  <h4 className="font-semibold text-lg mb-3">Role</h4>
-                  <p className="text-base font-normal">
-                    Lead UI/UX designer
-                    <br />
-                    Interaction design
-                  </p>
-                </div>
-                <div className="flex flex-col">
-                  <h4 className="font-semibold text-lg mb-3">Agency</h4>
-                  <p className="text-base font-normal">
-                    Carter.
-                    <br />/ Wongdoody
-                  </p>
-                </div>
-              </div>
-              <div className="spline-wrapper lg:top-[23rem] top-[19rem] left-[1rem] lg:left-[44px]">
-                <Image
-                  src="/assets/icons/icons-abstract-1.svg"
-                  alt="abstract-1"
-                  width={500}
-                  height={500}
-                  className="size-[80px] lg:size-[200px]"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-            <div className="max-w-full flex flex-flow w-full relative justify-between p-4 border border-[#ece6d5] text-[#ece6d5] lg:min-h-full min-h-[70vh]">
-              <div className="flex flex-flow gap-y-[8px]">
-                <h2 className="font-BiggerDisplay text-[5.653rem] lg:text-[127.888px] font-bold uppercase leading-[107.426px]">
-                  branding
-                </h2>
-                <p className="font-normal text-[16px]">
-                  Define your brand, make it as recognizable as possible
-                </p>
-              </div>
-              <div className="flex justify-between flex-row w-full items-start">
-                <div className="flex flex-col">
-                  <h4 className="font-semibold text-lg mb-3">Role</h4>
-                  <p className="text-base font-normal">
-                    Lead UI/UX designer
-                    <br />
-                    Graphic Design
-                  </p>
-                </div>
-                <div className="flex flex-col">
-                  <h4 className="font-semibold text-lg mb-3">Agency</h4>
-                  <p className="text-base font-normal">
-                    Carter.
-                    <br />/ Wongdoody
-                  </p>
-                </div>
-              </div>
-              <div className="spline-wrapper lg:top-[23rem] top-[19rem] left-[1rem] lg:left-[44px]">
-                <Image
-                  src="/assets/icons/icons-abstract-2.svg"
-                  alt="abstract-2"
-                  width={500}
-                  height={500}
-                  className="size-[80px] lg:size-[200px]"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-flow gap-y-[4vw] text-[#ece6d5] lg:opacity-[.56] justify-center items-center min-w-[30%] lg:max-w-[30%] lg:py-0 py-20">
-            <p className="text-[1.999rem] lg:text-[1.2rem] font-normal leading-[133%] lg:leading-[150%] lg:text-left px-0 lg:px-[6vw] lg:text-balance">
-              Over 12 years of experience in end-to-end digital design work,
-              bringing stories to life with amazing teams of talented people.
-              Learning and growing together through shared experiences.
-            </p>
-          </div>
-        </div>
-        <div className="w-full h-auto lg:h-[90vh] flex lg:flex-row flex-col">
-          <div className="flex flex-flow gap-y-[4vw] text-[#ece6d5] lg:opacity-[.56] justify-center items-center min-w-[30%] lg:py-0 py-20 px lg:max-w-[30%] pt-0">
-            <p className="text-[1.2rem] font-normal leading-[150%] text-balance px-0 lg:pl-[2vw] lg:pr-[10vw]">
-              I believe in a holistic approach of digital and interactive
-              design, as much as the power of design to improve people&apos;s
-              connection to the world.
-            </p>
-            <p className="text-[1.2rem] font-normal leading-[150%] text-left px-[6vw] text-balance pl-[2vw] pr-[10vw]">
-              *
-              <br />
-            </p>
-            <p className="text-[1.2rem] font-normal leading-[150%] text-left lg:px-[6vw] text-balance lg:pl-[10vw] px-0 lg:pr-[2vw]">
-              Crafting intentional, engaging, and delightful experiences for
-              people. I include accessibility and usability to my work, within a
-              blend of storytelling, technology, brand experience, and
-              delivering long-term sustainable systems.
-            </p>
-          </div>
-          <div className="w-full flex flex-col flex-nowrap lg:flex-row">
-            <div className="max-w-full flex flex-flow w-full relative justify-between p-4 border border-[#ece6d5] text-[#ece6d5] lg:min-h-full min-h-[70vh]">
-              <div className="flex flex-flow gap-y-[8px]">
-                <h2 className="font-BiggerDisplay text-[4.653rem] md:text-[5.653rem] lg:text-[127.888px] font-bold uppercase leading-[107.426px]">
-                  Development
-                </h2>
-                <p className="font-normal text-[16px]">
-                  Devlopment your webiste
-                  <br />
-                  Genrate new brand identity
-                </p>
-              </div>
-              <div className="flex justify-between flex-row w-full items-start">
-                <div className="flex flex-col">
-                  <h4 className="font-semibold text-lg mb-3">Role</h4>
-                  <p className="text-base font-normal">
-                    Frontend Developer
-                    <br />
-                    Backend Developer
-                  </p>
-                </div>
-                <div className="flex flex-col">
-                  <h4 className="font-semibold text-lg mb-3">Agency</h4>
-                  <p className="text-base font-normal">
-                    Carter.
-                    <br />/ Wongdoody
-                  </p>
-                </div>
-              </div>
-              <div className="spline-wrapper lg:top-[23rem] top-[19rem] left-[1rem] lg:left-[44px]">
-                <Image
-                  src="/assets/icons/icons-abstract-3.svg"
-                  alt="abstract-1"
-                  width={500}
-                  height={500}
-                  className="size-[80px] lg:size-[200px]"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-            <div className="max-w-full flex flex-flow w-full relative justify-between p-4 border border-[#ece6d5] text-[#ece6d5] lg:min-h-full min-h-[70vh]">
-              <div className="flex flex-flow gap-y-[8px]">
-                <h2 className="font-BiggerDisplay text-[5.653rem] lg:text-[127.888px] font-bold uppercase leading-[107.426px]">
-                  Testing
-                </h2>
-                <p className="font-normal text-[16px]">
-                  Test to ensure website quality
-                </p>
-              </div>
-              <div className="flex justify-between flex-row w-full items-start">
-                <div className="flex flex-col">
-                  <h4 className="font-semibold text-lg mb-3">Role</h4>
-                  <p className="text-base font-normal">Tester</p>
-                </div>
-                <div className="flex flex-col">
-                  <h4 className="font-semibold text-lg mb-3">Agency</h4>
-                  <p className="text-base font-normal">
-                    Carter.
-                    <br />/ Wongdoody
-                  </p>
-                </div>
-              </div>
-              <div className="spline-wrapper lg:top-[23rem] top-[19rem] left-[1rem] lg:left-[44px]">
-                <Image
-                  src="/assets/icons/icons-abstract-4.svg"
-                  alt="abstract-1"
-                  width={500}
-                  height={500}
-                  className="size-[80px] lg:size-[200px]"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+  const [hoverServiceId, setHoverServiceId] = useState<string | null>(null);
+  const [hoverPosition, setHoverPosition] = useState({ top: 0 });
+  const serviceRefs = useRef<{ [key: string]: HTMLLIElement | null }>({});
 
-        <div className="w-full h-auto lg:h-[90vh] flex lg:flex-row flex-col">
-          <div className="max-w-full flex flex-flow w-full relative justify-between p-4 border border-[#ece6d5] text-[#ece6d5] lg:min-h-full min-h-[70vh]">
-            <div className="flex flex-flow gap-y-[8px]">
-              <h2 className="font-BiggerDisplay text-[5.653rem] lg:text-[127.888px] font-bold uppercase leading-[107.426px]">
-                SEO
-              </h2>
-              <p className="font-normal text-[16px]">
-                SEO estimite to best performence
+  const handleMouseEnter = (serviceId: string) => {
+    setHoverServiceId(serviceId);
+
+    // Get the position of the hovered service item
+    if (serviceRefs.current[serviceId]) {
+      const rect = serviceRefs.current[serviceId].getBoundingClientRect();
+      // Position the hover element next to the list item
+      setHoverPosition({
+        top: rect.top - 100, // Adjust this offset as needed
+      });
+    }
+  };
+
+  return (
+    <section className="mb-[20rem] px-[1rem] lg:px-[1rem]" id="services">
+      <Heading
+        className="text-[364.471px] leading-[0.8em]"
+        heading="Services"
+        subheading={[
+          "Strategy",
+          "Brand Identity",
+          "Web Design",
+          "Web Development",
+          "Web Apps",
+        ]}
+      />
+      <ul className="mt-[185px] relative w-full mb-[365px]">
+        {services.map((service) => (
+          <React.Fragment key={service.id}>
+            <li
+              ref={(el) => {
+                serviceRefs.current[service.id] = el;
+              }}
+              className="pt-5 pb-[25px] pl-3 flex flex-row items-start gap-[253px] text-white opacity-40 border-t border-t-white/20 hover:bg-[#090909] hover:text-white duration-300 rounded-md hover:opacity-100 hover:border-t-white/10"
+              onMouseEnter={() => handleMouseEnter(service.id)}
+              onMouseLeave={() => setHoverServiceId(null)}
+            >
+              <span className="text-[13px] leading-[26px] font-normal">
+                ({service.id})
+              </span>
+              <h5 className="text-xl font-semibold max-w-[71.883px] w-full whitespace-nowrap">
+                {service.title}
+              </h5>
+              <p className="text-[13px] leading-[18.2px] max-w-[270px] w-full">
+                {service.desc}
               </p>
-            </div>
-            <div className="flex justify-between flex-row w-full items-start">
-              <div className="flex flex-col">
-                <h4 className="font-semibold text-lg mb-3">Role</h4>
-                <p className="text-base font-normal">Frontend Developer</p>
-                <p className="text-base font-normal">Marketing team</p>
+            </li>
+            {hoverServiceId === service.id && (
+              <div
+                className="absolute right-[17.8rem] max-w-[305px] w-full"
+                style={{ top: `${hoverPosition.top}px` }}
+              >
+                <Image
+                  src={service.service_image}
+                  alt="services-img"
+                  width={305}
+                  height={385.917}
+                  className="rounded-2xl object-cover mb-2 max-h-[229.917px]"
+                  loading="lazy"
+                />
+                <div className="flex flex-row items-start gap-2">
+                  <Image
+                    src={service.avatar}
+                    alt="avatar-img"
+                    width={32}
+                    height={32}
+                    className="size-8 rounded-full object-cover"
+                  />
+                  <p className="text-xs font-normal text-white max-w-[260px] w-full">
+                    &quot;
+                    {service.quote}
+                    &quot;
+                  </p>
+                </div>
               </div>
-              <div className="flex flex-col">
-                <h4 className="font-semibold text-lg mb-3">Agency</h4>
-                <p className="text-base font-normal">
-                  Carter.
-                  <br />/ Wongdoody
-                </p>
-              </div>
-            </div>
-            <div className="spline-wrapper lg:top-[23rem] top-[19rem] left-[1rem] lg:left-[44px]">
-              <Image
-                src="/assets/icons/icons-abstract-5.svg"
-                alt="abstract-1"
-                width={500}
-                height={500}
-                className="size-[80px] lg:size-[200px]"
-                loading="lazy"
-              />
-            </div>
-          </div>
-          <div className="flex flex-flow gap-y-[4vw] text-[#ece6d5] lg:opacity-[.56] justify-center items-center min-w-[30%] lg:max-w-[30%] lg:py-0 py-20">
-            <p className="text-[1.2rem] font-normal leading-[150%] text-balance lg:pl-[2vw] lg:pr-[10vw]">
-              Always trying to mix up a cocktail made of just the right amount
-              of research, insights and definition workshops, with creative,
-              engaging, and aesthetically pleasing designs.
-            </p>
-            <p className="text-[1.2rem] font-normal leading-[150%] text-left px-[6vw] text-balance pl-[2vw] pr-[10vw]">
-              *
-              <br />
-            </p>
-            <p className="text-[1.2rem] font-normal leading-[150%] text-left px-0 lg:px-[6vw] text-balance lg:pl-[10vw] lg:pr-[2vw]">
-              Answering in concert people and business needs, staying honest to
-              the beautiful reality of creative projects: Made of both finely
-              tuned approaches and messy, fun creative bursts that deliver the
-              best work.
-            </p>
-          </div>
-          <div className="max-w-full flex flex-flow w-full relative justify-between p-4 border border-[#ece6d5] text-[#ece6d5] lg:min-h-full min-h-[70vh]">
-            <div className="flex flex-flow gap-y-[8px]">
-              <h2 className="font-BiggerDisplay text-[5.653rem] lg:text-[127.888px] font-bold uppercase leading-[107.426px]">
-                Trusted
-              </h2>
-              <p className="font-normal text-[16px]">
-                We always create the most trust for customers.
-              </p>
-            </div>
-            <div className="flex justify-between flex-row w-full items-start">
-              <div className="flex flex-col">
-                <h4 className="font-semibold text-lg mb-3">Role</h4>
-                <p className="text-base font-normal">
-                  Lead UI/UX designer
-                  <br />
-                  Lead Sofware Engineer
-                </p>
-              </div>
-              <div className="flex flex-col">
-                <h4 className="font-semibold text-lg mb-3">Agency</h4>
-                <p className="text-base font-normal">
-                  Carter.
-                  <br />/ Wongdoody
-                </p>
-              </div>
-            </div>
-            <div className="spline-wrapper lg:top-[23rem] top-[19rem] left-[1rem] lg:left-[44px]">
-              <Image
-                src="/assets/icons/icons-abstract-6.svg"
-                alt="abstract-1"
-                width={500}
-                height={500}
-                className="size-[80px] lg:size-[200px]"
-                loading="lazy"
-              />
-            </div>
-          </div>
+            )}
+          </React.Fragment>
+        ))}
+      </ul>
+
+      <div className="flex flex-row items-start justify-start w-full mb-[185px]">
+        <span className="text-[11.5px] leading-[20.7px] font-semibold uppercase text-white opacity-40 pr-[235px]">
+          process
+        </span>
+        <div className="flex flex-row items-start gap-[15px]">
+          <p className="text-[13px] leading-[18.2px] font-medium text-left text-white max-w-[297px] w-full">
+            Strategy comes first. We start with a brand discovery survey and
+            workshop to define your mission, brand keywords, and market
+            positioning. We analyse competitors, target audiences, and business
+            goals, mapping out the site structure and product user flow to
+            create a solid foundation.
+          </p>
+          <p className="text-[13px] leading-[18.2px] font-medium text-left text-white max-w-[297px] w-full">
+            Next is design. With strategy in place, I craft your brand identity
+            - logo, typography, colours, and graphics -then apply it across key
+            touchpoints like websites, apps, or marketing materials for a
+            cohesive look.
+          </p>
+          <p className="text-[13px] leading-[18.2px] font-medium text-left text-white max-w-[297px] w-full">
+            Finally, we launch. I build your website in Framer or Webflow, or
+            work with a developer for a seamless rollout. Every detail is
+            refined to ensure your brand, website and product are ready to make
+            an impact.
+          </p>
+        </div>
+      </div>
+      <div className="flex flex-row items-start justify-start w-full mb-[185px] gap-[40px]">
+        <span className="text-[11.5px] leading-[20.7px] font-semibold uppercase text-white opacity-40 pr-[235px]">
+          process
+        </span>
+        <div className="max-w-[264px] w-full flex flex-col gap-2 items-start">
+          <p className="text-[13px] leading-[15.6px] text-white opacity-40 font-normal">
+            Total seed funding raised
+          </p>
+          <span className="text-[46px] leading-[41.86px] font-semibold text-white">
+            $73M+
+          </span>
+        </div>
+        <div className="max-w-[264px] w-full flex flex-col gap-2 items-start">
+          <p className="text-[13px] leading-[15.6px] text-white opacity-40 font-normal whitespace-nowrap">
+            Increased revenue by
+          </p>
+          <span className="text-[46px] leading-[41.86px] font-semibold text-white">
+            10x
+          </span>
+        </div>
+        <div className="max-w-[264px] w-full flex flex-col gap-2 items-start">
+          <p className="text-[13px] leading-[15.6px] text-white opacity-40 font-normal whitespace-nowrap">
+            Increased website traffic by
+          </p>
+          <span className="text-[46px] leading-[41.86px] font-semibold text-white">
+            784%
+          </span>
         </div>
       </div>
     </section>

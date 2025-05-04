@@ -19,16 +19,17 @@ export default {
         "2": "1 0 0px",
       },
       backgroundImage: {
-        "footer-pattern": "url('/assets/images/bg-footer.avif')",
+        "footer-pattern": "url('/assets/images/bg-pattern-footer.svg')",
+        "hero-pattern": "url('/assets/images/bg-pattern.svg')",
       },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        BiggerDisplay: "Bigger Display",
-        ApproachTrial: "Approach Trial",
-        Gridular: "Gridular",
+        Inter: "Inter",
+        InterDisplay: "Inter Display",
+        InstrumentSerif: ["var(--font-instrument-serif)"],
       },
     },
   },

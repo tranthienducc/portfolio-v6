@@ -153,3 +153,31 @@ export const sliderContent = [
     url: "/case-study/vios",
   },
 ];
+
+export const projectData = [
+  {
+    name: "Lunar Eclipse",
+    director: "Amelia Crawford",
+    location: "Toronto, ON",
+  },
+  {
+    name: "Visitor Quarters",
+    director: "Marcus Reynolds",
+    location: "Vancouver, BC",
+  },
+  {
+    name: "Celestial",
+    director: "Mina Liu // Wetson",
+    location: "Austin, TX",
+  },
+  {
+    name: "Streamwave Original",
+    director: "Dylan Pierce",
+    location: "Sunset Studios - Miami",
+  },
+  {
+    name: "Viewfinder",
+    director: "Javier // Rodriguez",
+    location: "BLANK Studios - Chicago",
+  },
+];

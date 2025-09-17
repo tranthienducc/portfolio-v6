@@ -1,190 +1,165 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import gsap from "gsap";
 import { ChildProps } from "@/utils/types";
+import Logo from "@/components/icons/Logo";
 
 const BlockReveal = ({ children }: ChildProps) => {
+  const router = useRouter();
+  const overlayRef = useRef<HTMLDivElement | null>(null);
+  const logoOverlayRef = useRef<HTMLDivElement | null>(null);
+  const logoRef = useRef<SVGSVGElement | null>(null);
+  const blockRef = useRef<HTMLDivElement[]>([]);
+  const isTransitioning = useRef(false);
   const transition = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
-  const isAnimating = useRef(false);
   const [currentPath, setCurrentPath] = useState(pathname);
 
   useEffect(() => {
-    if (!transition.current) return;
-    const transitionCols =
-      transition.current.querySelectorAll(".transition-column");
-    const transitionColTexts = transition.current.querySelectorAll(
-      ".transition-column-text > span"
-    );
-    const transitionElementTexts = transition.current.querySelectorAll(
-      ".transition-element > h1"
-    );
+    const creatBlocks = () => {
+      if (!overlayRef.current) return;
+      overlayRef.current.innerHTML = "";
+      blockRef.current = [];
 
-    const initTransition = () => {
-      gsap.set(transition.current, { display: "none", autoAlpha: 0 });
-      gsap.set(transitionCols, { y: "-101%" });
-      gsap.set(transitionColTexts, { autoAlpha: 0, y: "-101%" });
-      gsap.set(transitionElementTexts, { autoAlpha: 0 });
-      isAnimating.current = false;
+      for (let i = 0; i < 20; i++) {
+        const block = document.createElement("div");
+        block.className = "block";
+        overlayRef.current.appendChild(block);
+        blockRef.current.push(block);
+      }
     };
+    creatBlocks();
 
-    const hide = () => {
-      const tl = gsap.timeline({
-        defaults: { ease: "expo.inOut" },
-        onComplete: () => {
-          initTransition();
-        },
-      });
+    gsap.set(blockRef.current, { scaleX: 0, transformOrigin: "left" });
 
-      tl.to(
-        transitionElementTexts,
-        {
-          duration: 1,
-          autoAlpha: 0,
-          stagger: 0.055,
-        },
-        0
-      )
-        .to(
-          transitionCols,
-          {
-            duration: 1.25,
-            y: "101%",
-            stagger: {
-              each: 0.045,
-              from: "random",
-              grid: "auto",
-            },
-          },
-          0.75
-        )
-        .to(transition.current, {
-          duration: 0.2,
-          display: "none",
-          autoAlpha: 0,
+    if (logoRef.current) {
+      const path = logoRef.current.querySelector("path");
+      if (path) {
+        const length = path.getTotalLength();
+        gsap.set(path, {
+          strokeDasharray: length,
+          strokeDashoffset: length,
+          fill: "transparent",
         });
+      }
+    }
+
+    revealPage();
+
+    const handleRouteChange = (url: string) => {
+      if (isTransitioning.current) return;
+      isTransitioning.current = true;
+      coverPage(url);
     };
 
-    const show = () => {
-      if (isAnimating.current) return;
-      isAnimating.current = true;
-
-      const tl = gsap.timeline({
-        defaults: { ease: "expo.inOut" },
-      });
-
-      tl.to(
-        transition.current,
-        {
-          duration: 0.2,
-          display: "block",
-          autoAlpha: 1,
-        },
-        0
-      )
-        .to(
-          transitionCols,
-          {
-            duration: 1.25,
-            y: 0,
-            stagger: {
-              each: 0.045,
-              from: "random",
-              grid: "auto",
-            },
-          },
-          0.05
-        )
-        .to(
-          transitionColTexts,
-          {
-            duration: 1,
-            autoAlpha: 1,
-            y: 0,
-          },
-          0.5
-        )
-        .to(
-          transitionColTexts,
-          {
-            duration: 1,
-            autoAlpha: 0,
-            y: "101%",
-          },
-          2.75
-        )
-        .to(
-          transitionElementTexts,
-          {
-            duration: 1,
-            autoAlpha: 1,
-            stagger: {
-              each: 0.055,
-              from: "random",
-            },
-            onComplete: () => {
-              hide();
-            },
-          },
-          0.75
-        );
+    // Define the click handler so it can be referenced for both add/remove
+    const handleLinkClick = (e: Event) => {
+      e.preventDefault();
+      const target = e.currentTarget as HTMLAnchorElement | null;
+      if (target && target.href) {
+        const href = target.href;
+        const url = new URL(href).pathname;
+        if (url !== pathname) {
+          handleRouteChange(url);
+        }
+      }
     };
 
-    // Initialize transition
-    initTransition();
-
+    const links = document.querySelectorAll('a[href^="/"]');
+    links.forEach((link) => {
+      link.addEventListener("click", handleLinkClick);
+    });
     if (pathname !== currentPath) {
-      show();
       setTimeout(() => setCurrentPath(pathname), 1500); // Delay để chờ animation chạy xong
     }
 
     // Cleanup function
     return () => {
+      links.forEach((link) => {
+        link.removeEventListener("click", handleLinkClick);
+      });
       if (transition.current) {
         gsap.killTweensOf(transition.current);
-        gsap.killTweensOf(transitionCols);
-        gsap.killTweensOf(transitionColTexts);
-        gsap.killTweensOf(transitionElementTexts);
       }
     };
   }, [pathname]); // Re-run effect when pathname changes
 
+  const coverPage = (url: string) => {
+    const tl = gsap.timeline({
+      onComplete: () => router.push(url),
+    });
+
+    tl.to(blockRef.current, {
+      scaleX: 1,
+      duration: 0.4,
+      stagger: 0.02,
+      ease: "power2.out",
+      transformOrigin: "left",
+    })
+
+      .set(logoOverlayRef.current, { opacity: 1 }, "-=0.2")
+      .set(
+        logoOverlayRef.current
+          ? logoOverlayRef.current.querySelector<SVGPathElement>("path")
+          : null,
+        {
+          strokeDashoffset: logoRef.current
+            ?.querySelector("path")
+            ?.getTotalLength(),
+          fill: "transparent",
+        },
+        "-=0.25"
+      )
+      .to(
+        logoRef.current?.querySelector("path") ?? [],
+        {
+          strokeDashoffset: 0,
+          duration: 2,
+          ease: "power2.inOut",
+        },
+        "-=0.5"
+      )
+      .to(
+        logoRef.current?.querySelector("path")
+          ? logoRef.current.querySelector("path")!
+          : [],
+        {
+          fill: "#ebe5d9",
+          duration: 1,
+          ease: "power2.out",
+        },
+        "-=0.5"
+      )
+      .to(logoOverlayRef.current, {
+        opacity: 0,
+        duration: 0.25,
+        ease: "power2.out",
+      });
+  };
+
+  const revealPage = () => {
+    gsap.set(blockRef.current, { scaleX: 1, transformOrigin: "right" });
+
+    gsap.to(blockRef.current, {
+      scaleX: 0,
+      duration: 0.4,
+      stagger: 0.02,
+      ease: "power2.out",
+      transformOrigin: "right",
+      onComplete: () => {
+        isTransitioning.current = false;
+      },
+    });
+  };
   return (
     <>
-      <section ref={transition} className="transitioned">
-        <div className="transition-wrapper">
-          <div className="transition-element lg:text-[10rem] text-[3rem]">
-            <h1>T</h1>
-            <h1>H</h1>
-            <h1>I</h1>
-            <h1>E</h1>
-            <h1>N</h1>
-            <h1>D</h1>
-            <h1>U</h1>
-            <h1>C</h1>
-          </div>
-
-          <div className="transition-columns">
-            <div className="transition-column">
-              <div className="transition-column-text"></div>
-            </div>
-
-            <div className="transition-column">
-              <div className="transition-column-text"></div>
-            </div>
-
-            <div className="transition-column"></div>
-
-            <div className="transition-column">
-              <div className="transition-column-text"></div>
-            </div>
-            <div className="transition-column">
-              <div className="transition-column-text"></div>
-            </div>
-          </div>
+      <div className="transition-overlay" ref={overlayRef}></div>
+      <div className="logo-overlay" ref={logoOverlayRef}>
+        <div className="logo-container">
+          <Logo ref={logoRef} />
         </div>
-      </section>
+      </div>
       <div className={`transition-opacity duration-1000 opacity-100`}>
         {children}
       </div>

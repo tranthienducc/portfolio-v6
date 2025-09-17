@@ -3,18 +3,18 @@ import { cn } from "@/utils";
 type HeadingProps = {
   className?: string;
   heading: string;
-  subheading: string | string[]; // có thể là string hoặc array of strings
+  subheading: string | string[];
 };
 const Heading = ({ className, heading, subheading }: HeadingProps) => {
   return (
-    <div className="flex flex-col items-start justify-start w-full gap-3">
+    <div className="flex flex-col items-center justify-center w-full gap-3">
       <h1
         className={cn(
-          "text-[204.302px] font-bold leading-[133.85px] font-InterDisplay text-[#ebe5d9]",
+          "text-[366.688px] leading-[103.75px] font-bold font-NeuroX uppercase text-[#ebe5d9] whitespace-nowrap mb-16",
           className || ""
         )}
       >
-        {heading}
+        {heading} *
       </h1>
       <div className="flex items-center justify-between w-full">
         {Array.isArray(subheading) ? (

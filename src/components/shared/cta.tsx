@@ -8,7 +8,6 @@ const CTA = () => {
   return (
     <section className="px-[1rem] mb-[20rem] relative w-full border-t border-t-white/10 pt-9">
       <Heading
-        className="text-[257.218px] leading-[176.974px]"
         heading="Get in Touch"
         subheading={[
           "Let's chat",

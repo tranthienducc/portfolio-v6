@@ -19,6 +19,7 @@ export default {
         "2": "1 0 0px",
       },
       backgroundImage: {
+        "custom-pattern": "url('/assets/images/Patterns.png')",
         "footer-pattern": "url('/assets/images/bg-pattern-footer.svg')",
         "hero-pattern": "url('/assets/images/bg-pattern.svg')",
       },
@@ -28,8 +29,8 @@ export default {
       },
       fontFamily: {
         Inter: "Inter",
-        InterDisplay: "Inter Display",
-        InstrumentSerif: ["var(--font-instrument-serif)"],
+        AntikorMono: ["var(--font-antikor-mono)"],
+        NeuroX: ["var(--font-neuro-x)"],
       },
     },
   },

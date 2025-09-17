@@ -5,29 +5,30 @@ import Wrapper from "@/components/Wrapper";
 import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
-const interDisplay = localFont({
-  src: "./fonts/InterDisplay/InterDisplay-Bold.ttf",
-  variable: "--font-inter-display",
-  weight: "700",
-});
-const instrumentSerif = localFont({
+const antikorMono = localFont({
   src: [
     {
-      path: "./fonts/InstrumentSerif/InstrumentSerif-Regular.ttf",
-      weight: "400",
+      path: "./fonts/AntikorMono/Antikor-Mono-SemiBold.ttf",
+      weight: "600",
       style: "normal",
     },
+  ],
+  variable: "--font-antikor-mono",
+  display: "swap",
+});
+const neuroX = localFont({
+  src: [
     {
-      path: "./fonts/InstrumentSerif/InstrumentSerif-Italic.ttf",
-      weight: "400",
-      style: "italic",
+      path: "./fonts/NeuroX/Neuro-X-Bold-Rounded.ttf",
+      weight: "700",
+      style: "normal",
     },
   ],
-  variable: "--font-instrument-serif",
+  variable: "--font-neuro-x",
   display: "swap",
 });
 export const metadata: Metadata = {
-  title: "Thien Duc • Portfolio",
+  title: "Thien Duc • Portfolio 2025",
   description: "Portfolio Version 6",
 };
 
@@ -39,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} ${interDisplay.variable} ${instrumentSerif.variable} antialiased font-Inter`}
+        className={`${inter.className} ${antikorMono.variable} ${neuroX.variable} antialiased font-Inter`}
       >
         <Wrapper>{children}</Wrapper>
       </body>

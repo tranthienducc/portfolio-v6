@@ -1,188 +1,218 @@
-import Image from "next/image";
-import Heading from "@/components/heading";
+"use client";
 
-const testimonials = [
+import { useEffect, useRef, useState } from "react";
+import { Plus } from "lucide-react";
+import Image from "next/image";
+import gsap from "gsap";
+import IconsSun from "@/components/icons/IconsSun";
+import IconsLogos from "@/components/icons/IconsLogos";
+
+type TestimonialType = {
+  name: string;
+  position: string;
+  message: string;
+  img: string;
+};
+
+const testimonialsData: TestimonialType[] = [
   {
-    name: "John Garden",
-    title: "Co-Founder of Gosh",
-    image: "/assets/images/test1.jpg",
-    logo: "/assets/icons/icon-logo.svg",
-    company: "Gosh",
-    quote:
-      "This partnership has effectively redefined Gosh identity and product. Aligning them with our core values of scientific innovation and trustworthiness in the healthcare space.",
+    name: "Alice Johnson",
+    position: "CEO at NovaCorp",
+    message:
+      "An inspiring journey that gave me clarity and confidence in my work. Is the best performance i have scene before.",
+    img: "/assets/images/img1.jpg",
   },
   {
-    name: "Anna White",
-    title: "CTO of Lumina",
-    image: "/assets/images/test2.jpg",
-    logo: "/assets/icons/icon-logo.svg",
-    company: "Lumina",
-    quote:
-      "Duc brought our brand to life with expert design and professionalism, helping us stand out and connect with clients. His work made a real impact, and I highly recommend him.",
+    name: "David Kim",
+    position: "Product Designer",
+    message:
+      "An inspiring journey that gave me clarity and confidence in my work.",
+    img: "/assets/images/img2.jpg",
   },
   {
-    name: "Craig MacAlpine",
-    title: "Founder of Expert Insights",
-    image: "/assets/images/test3.jpg",
-    logo: "/assets/icons/icon-logo.svg",
-    company: "Expert Insights",
-    quote:
-      "Duc process was hugely beneficial in defining our brand and business goals. The subsequent designs helped us demonstrate our position as a credible leader in the industry. We’re incredibly happy with the results.",
+    name: "Maria Lopez",
+    position: "CTO at InnovateX",
+    message: "Working with this platform was smooth and efficient.",
+    img: "/assets/images/img3.jpg",
   },
   {
-    name: "Lisa Moon",
-    title: "CMO at Brightspace",
-    image: "/assets/images/test4.jpg",
-    logo: "/assets/icons/icon-logo.svg",
-    company: "Brightspace",
-    quote:
-      "Duc delivered sleek, user-friendly product and website designs that perfectly captured our brand. The final result looks amazing, functions flawlessly, and exceeded our expectations. Highly recommend!",
-  },
-  {
-    name: "David Lin",
-    title: "Head of Product at Streamflow",
-    image: "/assets/images/test5.jpg",
-    logo: "/assets/icons/icon-logo.svg",
-    company: "Streamflow",
-    quote:
-      "Duc is really the best designer you can get. He pays attention to details, acts professionally, and asks insightful questions that ultimately lead to outstanding designs that match the ethos of the brand.",
-  },
-  {
-    name: "Olivia Parkes",
-    title: "CEO of TheSystemsBoss",
-    image: "/assets/images/client-1.avif",
-    logo: "/assets/icons/icon-logo.svg",
-    company: "TheSystemsBoss",
-    quote:
-      "The branding workshop was a concise and valuable way to refine our brand. Duc simplified complex ideas into clear, visually appealing designs, and we were thrilled with the outcome.",
-  },
-  {
-    name: "Will Bruhn",
-    title: "Co-Founder of GAM",
-    image: "/assets/images/client-2.avif",
-    logo: "/assets/icons/icon-logo.svg",
-    company: "GAM",
-    quote:
-      "Duc consistently delivers top-quality work and guided our team on brand implementation. His strategy workshop was engaging and results-driven, and his process was seamless and flexible throughout.",
-  },
-  {
-    name: "Sara Blake",
-    title: "Founder of ThriveNow",
-    image: "/assets/images/test4.jpg",
-    logo: "/assets/icons/icon-logo.svg",
-    company: "ThriveNow",
-    quote:
-      "Duc brand workshop was remarkably enjoyable and exactly what we needed. The result was a clearly defined strategic direction and a brand identity, and website that positioned us as a leading productivity platform.",
-  },
-  {
-    name: "Marcus Vane",
-    title: "Creative Director at Nuvio",
-    image: "/assets/images/test5.jpg",
-    logo: "/assets/icons/icon-logo.svg",
-    company: "Nuvio",
-    quote:
-      "Duc has been a valued contributor to Pharsalus, playing a key role in our brand building and content creation, particularly with our logo, website, and early decks. Personable and easy to work with, we highly recommend him.",
+    name: "John Carter",
+    position: "Freelance Developer",
+    message:
+      "This project gave me new opportunities I never thought possible in my client, services for you, that not complanit.",
+    img: "/assets/images/img4.jpg",
   },
 ];
 
-const TestimonialCard = ({
-  t,
-  index,
-}: {
-  t: (typeof testimonials)[number];
-  index: number;
-}) => {
-  const shouldRotateRight = [1, 4, 5, 7].includes(index);
-
-  return (
-    <div className="flex flex-col items-center gap-[19px] max-w-[416px] h-[414px] w-full">
-      <div
-        className={`w-[175.379px] h-[248.68px] p-2 flex flex-col gap-2 bg-white text-black rounded mt-[10rem] ${
-          shouldRotateRight ? "rotate-[2deg]" : "rotate-[-2deg]"
-        } transform mb-[13px]`}
-      >
-        <div className="flex-1 min-h-0 w-full">
-          <Image
-            src={t.image}
-            alt={t.name}
-            loading="lazy"
-            width={175}
-            height={248}
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="flex-none h-[29px] flex items-start justify-start flex-col">
-          <p className="text-xs font-medium text-black">{t.name}</p>
-          <span className="text-xs font-normal text-black opacity-40">
-            {t.title}
-          </span>
-        </div>
-      </div>
-      <div className="flex items-center flex-col gap-[10px] text-center justify-center">
-        <div className="flex flex-row items-center gap-2">
-          <Image
-            src={t.logo}
-            alt="logo"
-            width={32}
-            height={32}
-            className="size-[32px]"
-          />
-          <span className="text-sm font-medium text-white">{t.company}</span>
-        </div>
-        <p className="font-InstrumentSerif text-[25px] leading-[30px] text-white">
-          “{t.quote}”
-        </p>
-      </div>
-    </div>
-  );
-};
-
 const Testimonial = () => {
-  return (
-    <section className="px-4 lg:px-[1rem] py-10" id="testimonial">
-      <Heading
-        className="text-[255.35px] leading-[0.8em]"
-        heading="Testimonials"
-        subheading={[
-          "Dont't just take my word for it",
-          "Kind words",
-          "Happy customers",
-        ]}
-      />
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const messageRef = useRef<HTMLHeadingElement | null>(null);
+  const nameRef = useRef<HTMLHeadingElement | null>(null);
+  const posRef = useRef<HTMLSpanElement | null>(null);
+  const imageContainerRef = useRef<HTMLDivElement | null>(null);
+  const currentImageRef = useRef<HTMLImageElement | null>(null);
 
-      <div className="px-[279px] flex flex-col gap-y-[83px]">
-        {[0, 3, 6].map((startIndex) => (
-          <div key={startIndex} className="flex flex-col">
-            {/* 2 testimonial trái phải */}
-            <div className="grid grid-cols-2 gap-x-[130px]">
-              {testimonials[startIndex] && (
-                <div className="justify-self-end">
-                  <TestimonialCard
-                    t={testimonials[startIndex]}
-                    index={startIndex}
-                  />
-                </div>
-              )}
-              {testimonials[startIndex + 1] && (
-                <div className="justify-self-start">
-                  <TestimonialCard
-                    t={testimonials[startIndex + 1]}
-                    index={startIndex + 1}
-                  />
-                </div>
-              )}
-            </div>
-            {/* testimonial chính giữa */}
-            {testimonials[startIndex + 2] && (
-              <div className="mt-[83px] mb-[83px] flex justify-center">
-                <TestimonialCard
-                  t={testimonials[startIndex + 2]}
-                  index={startIndex + 2}
-                />
-              </div>
-            )}
+  const current = testimonialsData[currentIndex];
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) =>
+      prev === 0 ? testimonialsData.length - 1 : prev - 1
+    );
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) =>
+      prev === testimonialsData.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  useEffect(() => {
+    if (
+      !messageRef.current ||
+      !nameRef.current ||
+      !posRef.current ||
+      !imageContainerRef.current ||
+      !currentImageRef.current
+    )
+      return;
+
+    // Split text for message
+    messageRef.current.innerHTML = "";
+    current.message.split("").forEach((char) => {
+      const wrapper = document.createElement("span");
+      wrapper.style.display = "inline-block";
+      wrapper.style.overflow = "hidden";
+
+      const span = document.createElement("span");
+      span.textContent = char === " " ? "\u00A0" : char;
+      span.classList.add("letters");
+      span.style.display = "inline-block";
+      span.style.transform = "translateY(100%)";
+
+      wrapper.appendChild(span);
+      messageRef.current!.appendChild(wrapper);
+    });
+
+    // Create GSAP timeline
+    const tl = gsap.timeline();
+
+    // Animate text
+    const letters = messageRef.current.querySelectorAll(".letters");
+    tl.to(letters, {
+      y: "0%",
+      opacity: 1,
+      ease: "power4.out",
+      duration: 0.5,
+      stagger: { each: 0.02, from: "random", amount: 0.6 },
+    });
+
+    // Animate author name
+    tl.fromTo(
+      nameRef.current,
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.4, ease: "power4.out" },
+      "-=0.4"
+    );
+
+    // Animate position
+    tl.fromTo(
+      posRef.current,
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 0.6, duration: 0.4, ease: "power4.out" },
+      "-=0.35"
+    );
+
+    // Image animation
+    gsap.set(currentImageRef.current, { y: "100%", opacity: 0 });
+    tl.to(
+      currentImageRef.current,
+      {
+        y: "0%",
+        opacity: 1,
+        duration: 0.6,
+        ease: "power4.out",
+      },
+      0
+    );
+
+    return () => {
+      tl.kill(); // Clean up timeline
+    };
+  }, [currentIndex]);
+
+  return (
+    <section
+      className="relative h-screen px-[1rem] lg:px-[1rem]"
+      id="testimonial"
+    >
+      <div className="relative">
+        {/* Background rectangles */}
+        <Image
+          src="/assets/images/rectangles.png"
+          width={203}
+          height={151}
+          className="w-[203px] h-[151px] object-cover absolute top-[-11%] left-[16%] z-0"
+          alt="bg-abstract"
+        />
+        <Image
+          src="/assets/images/rectangles.png"
+          width={203}
+          height={151}
+          className="w-[203px] h-[151px] object-cover absolute bottom-[5%] right-[35%] z-0"
+          alt="bg-abstract"
+        />
+
+        {/* Message */}
+        <h1
+          ref={messageRef}
+          className="text-[60px] lg:text-[120px] xl:text-[180px] leading-[138px] font-bold font-NeuroX uppercase text-[#ebe5d9]  text-center w-full mt-[204px] tracking-normal relative z-10"
+          style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}
+        ></h1>
+
+        {/* Image Container */}
+        <div
+          ref={imageContainerRef}
+          className="absolute w-[320px] lg:w-[226px] xl:w-[226px] aspect-square left-[66%] top-[61%] z-20 transform rotate-[7deg]"
+        >
+          <Image
+            ref={currentImageRef}
+            className="w-full h-full rounded-2xl object-cover"
+            src={current.img}
+            alt="current-img-testimonials"
+            width={480}
+            height={480}
+          />
+        </div>
+
+        {/* Controls + Author */}
+        <div className="flex flex-row items-center justify-between w-full mt-10">
+          {/* Prev - Next */}
+          <div className="flex items-center gap-6 flex-row">
+            <button onClick={handlePrev}>
+              <Plus className="transform rotate-[-7deg] text-white" />
+            </button>
+            <button onClick={handleNext}>
+              <Plus className="transform rotate-[12deg] text-white" />
+            </button>
           </div>
-        ))}
+
+          {/* Position - Author name */}
+          <div className="flex flex-col items-start gap-0">
+            <h4
+              ref={nameRef}
+              className="text-sm font-medium text-white whitespace-nowrap"
+            >
+              {current.name}
+            </h4>
+            <IconsLogos />
+            <span
+              ref={posRef}
+              className="text-sm font-normal text-white opacity-40"
+            >
+              {current.position}
+            </span>
+          </div>
+        </div>
       </div>
     </section>
   );

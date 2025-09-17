@@ -1,5 +1,5 @@
 import Heading from "@/components/heading";
-import InversionLens from "@/components/InversionLens";
+import Image from "next/image";
 
 const About = () => {
   return (
@@ -8,8 +8,7 @@ const About = () => {
       id="about"
     >
       <Heading
-        className="text-[255.35px] leading-[0.8em]"
-        heading="About Thien"
+        heading="About Around Thien"
         subheading={[
           "Thien Duc",
           "Fronnt",
@@ -20,7 +19,24 @@ const About = () => {
         ]}
       />
 
-      <InversionLens className="mt-4 mb-[156px]" src="/assets/images/new.jpg" />
+      <div className="flex flex-row gap-10 mx-[20%] my-12">
+        <Image
+          className="w-[479.61px] h-[479.61px] rounded-md"
+          src="/assets/images/img7.jpg"
+          loading="lazy"
+          alt="img-testimonials"
+          width={479.61}
+          height={479.61}
+        />
+        <Image
+          className="w-[479.61px] h-[479.61px] rounded-md"
+          src="/assets/images/img2.jpg"
+          loading="lazy"
+          alt="img-testimonials"
+          width={479.61}
+          height={479.61}
+        />
+      </div>
       <Information />
     </section>
   );
@@ -32,18 +48,18 @@ function Information() {
   return (
     <div className="flex flex-col">
       <div className="flex flex-row items-start gap-[313px] justify-start pl-[13.6rem] mb-[359px]">
-        <h4 className="uppercase text-[11.5px] font-semibold leading-[20.7px] text-white">
+        <h4 className="uppercase text-[11.5px] font-semibold leading-[20.7px] text-white opacity-40">
           approach
         </h4>
         <div className="max-w-[478px] w-full flex flex-col text-left">
           <div className="max-w-[300px] w-full mb-[59px]">
-            <h3 className="text-[46px] leading-[41.86px] text-white font-semibold">
-              Designing for Impact and{" "}
-              <span className="font-InstrumentSerif italic">Clarity</span>
+            {/* sửa lại cái này */}
+            <h3 className="text-[38px] leading-[37.86px] text-white opacity-80 font-semibold">
+              Designing for Impact and Clarity
             </h3>
           </div>
           <div className="max-w-full w-full mb-10">
-            <p className="text-wrap text-xl font-semibold text-white">
+            <p className="text-wrap text-base font-semibold text-white opacity-70">
               I believe great design is more than aesthetics. It’s about
               strategy, clarity, and growth. Every project I take on starts with
               a deep understanding of your brand’s goals, audience, and
@@ -51,7 +67,7 @@ function Information() {
             </p>
           </div>
           <div className="max-w-full w-full">
-            <p className="text-xl font-semibold text-white">
+            <p className="text-base font-semibold text-white opacity-70">
               My approach blends strategy and execution, ensuring every design
               decision serves a purpose. Whether crafting a visual identity, a
               high-converting website, or a seamless user experience, I focus on
@@ -62,31 +78,30 @@ function Information() {
       </div>
 
       <div className="flex flex-row items-start gap-[313px] justify-start pl-[31.6rem] mb-[304px]">
-        <h4 className="uppercase text-[11.5px] font-semibold leading-[20.7px] text-white">
+        <h4 className="uppercase text-[11.5px] font-semibold leading-[20.7px] text-white opacity-40">
           Background
         </h4>
         <div className="max-w-[478px] w-full flex flex-col text-left">
           <div className="max-w-[320px] w-full mb-[59px]">
-            <h3 className="text-[46px] leading-[41.86px] text-white font-semibold">
-              From Frontend to Design{" "}
-              <span className="font-InstrumentSerif italic">Freedom</span>
+            <h3 className="text-[38px] leading-[37.86px] text-white opacity-80 font-semibold">
+              Journey from Frontend to Designer
             </h3>
           </div>
           <div className="max-w-full w-full mb-10">
-            <p className="text-wrap text-xl font-semibold text-white">
+            <p className="text-wrap text-base font-semibold text-white opacity-70">
               I started in marketing but found my passion in design—solving
               problems creatively.
             </p>
           </div>
           <div className="max-w-full w-full mb-10">
-            <p className="text-xl font-semibold text-white">
+            <p className="text-base font-semibold text-white opacity-70">
               After cutting my teeth at a branding agency in Vietnam I built my
               one-person design business, gaining the freedom to travel and work
               globally.
             </p>
           </div>
           <div className="max-w-full w-full">
-            <p className="text-xl font-semibold text-white">
+            <p className="text-base font-semibold text-white opacity-70">
               Today, I help startups and tech companies create brands and
               websites that stand out and scale.
             </p>
@@ -95,42 +110,21 @@ function Information() {
       </div>
 
       <div className="flex flex-row items-start gap-[313px] justify-start pl-0 mb-[380px]">
-        <h4 className="uppercase text-[11.5px] font-semibold leading-[20.7px] text-white">
+        <h4 className="uppercase text-[11.5px] font-semibold leading-[20.7px] text-white opacity-40">
           beyond design
         </h4>
         <div className="max-w-[478px] w-full flex flex-col text-left">
           <div className="max-w-[315px] w-full mb-[59px]">
-            <h3 className="text-[46px] leading-[41.86px] text-white font-semibold">
-              How Travel & Nature Shape My
-              <span className="font-InstrumentSerif italic">Perspective</span>
+            <h3 className="text-[38px] leading-[37.86px] text-white opacity-80 font-semibold">
+              Free spirit and explorer
             </h3>
           </div>
           <div className="max-w-full w-full mb-10">
-            <p className="text-wrap text-xl font-semibold text-white">
+            <p className="text-wrap text-base font-semibold text-white opacity-70">
               When I’m not designing, I’m playing chess, hiking with my dog, or
               exploring new places. I’ve lived in Can Tho, worked from aluminum
               and glass work, and love the intersection of nature, creativity,
               and technology.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div className="flex flex-row items-start gap-[313px] justify-start pl-[31.6rem] mb-[304px]">
-        <h4 className="uppercase text-[11.5px] font-semibold leading-[20.7px] text-white">
-          featured in
-        </h4>
-        <div className="max-w-[478px] w-full flex flex-col text-left">
-          <div className="max-w-[300px] w-full mb-[59px]">
-            <h3 className="text-[46px] leading-[41.86px] text-white font-semibold">
-              Work features{" "}
-              <span className="font-InstrumentSerif italic">by</span>
-            </h3>
-          </div>
-          <div className="max-w-full w-full mb-10">
-            <p className="text-wrap text-xl font-semibold text-white">
-              My work has been featured by Awwwards, Dribbble, Figma, Threads &
-              more.
             </p>
           </div>
         </div>

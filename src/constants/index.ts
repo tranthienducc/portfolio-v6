@@ -1,108 +1,3 @@
-export const cards = [
-  {
-    images: "/assets/icons/icons-star.svg",
-    title: "Web Development",
-    description:
-      "A website developed to captivate and convert can elevate your brand to new heights. My custom-coded sites are meticulously crafted to reflect your unique identity, delivering seamless experiences with a focus on animation—keeping your audience engaged and returning",
-    tags: [
-      {
-        quantity: "01",
-        label: "CMS Integration",
-      },
-      {
-        quantity: "02",
-        label: "Motion & Animations",
-      },
-      {
-        quantity: "03",
-        label: "3D Development",
-      },
-    ],
-    number: "(01)",
-  },
-  {
-    images: "/assets/icons/icons-shape.svg",
-    title: "Web Design",
-    description:
-      "Amplify your online presence with a website that truly connects with your audience's feelings and desires. I design stunning, high-converting sites that align with your business goals, helping you stand out and scale effectively.",
-    tags: [
-      {
-        quantity: "01",
-        label: "Responsive Design",
-      },
-      {
-        quantity: "02",
-        label: "Wireframing",
-      },
-      {
-        quantity: "03",
-        label: "UX Writing",
-      },
-    ],
-    number: "(02)",
-  },
-  {
-    images: "/assets/icons/icons-triangle.svg",
-    title: "SEO",
-    description:
-      "Your website deserves to be seen. I optimize your online presence to elevate your visibility in search results, helping your business attract the right audience and stand out in the digital landscape.",
-    tags: [
-      {
-        quantity: "01",
-        label: "Technical SEO",
-      },
-      {
-        quantity: "02",
-        label: "On-Page Optimization",
-      },
-      {
-        quantity: "03",
-        label: "SEO Audits & Analysis",
-      },
-    ],
-    number: "(03)",
-  },
-];
-export const testimonials = [
-  {
-    message: "Duc is phenomenal. An absolute pleasure to work with!",
-    author: "Daniel Long",
-    position: "Founder's Associate @Volup",
-    services: [
-      {
-        label: "Web Design",
-      },
-      {
-        label: "Web Devlopment",
-      },
-      {
-        label: "SEO",
-      },
-    ],
-    num: 1,
-    url: "/assets/images/client-1.avif",
-  },
-  {
-    message:
-      "Beyond standards. Duc grasped our vision and brought it to life brilliantly.",
-    author: "Dylan Kim",
-    position: "Co-founder @MLV Ignite",
-    services: [
-      {
-        label: "Web Design",
-      },
-      {
-        label: "Web Devlopment",
-      },
-      {
-        label: "SEO",
-      },
-    ],
-    num: 2,
-    url: "/assets/images/client-2.avif",
-  },
-];
-
 export const sliderContent = [
   {
     name: "Strive",
@@ -154,30 +49,33 @@ export const sliderContent = [
   },
 ];
 
-export const projectData = [
-  {
-    name: "Lunar Eclipse",
-    director: "Amelia Crawford",
-    location: "Toronto, ON",
-  },
-  {
-    name: "Visitor Quarters",
-    director: "Marcus Reynolds",
-    location: "Vancouver, BC",
-  },
-  {
-    name: "Celestial",
-    director: "Mina Liu // Wetson",
-    location: "Austin, TX",
-  },
-  {
-    name: "Streamwave Original",
-    director: "Dylan Pierce",
-    location: "Sunset Studios - Miami",
-  },
-  {
-    name: "Viewfinder",
-    director: "Javier // Rodriguez",
-    location: "BLANK Studios - Chicago",
-  },
+export const siteData = [
+  { name: "Doflamingo", position: "CEO of Glam Dusk" },
+  { name: "Nico Robin", position: "Head of Research" },
+  { name: "Zoro", position: "Creative Director" },
+  { name: "Sanji", position: "Chief Marketing Officer" },
+  { name: "Nami", position: "Finance Manager" },
+  { name: "Law", position: "Operations Lead" },
+  { name: "Kid", position: "Tech Advisor" },
+  { name: "Boa Hancock", position: "Brand Ambassador" },
+  { name: "Ace", position: "Senior Designer" },
+  { name: "Shanks", position: "Investor" },
+  { name: "Kaido", position: "Partnership Head" },
+  { name: "Big Mom", position: "Strategy Lead" },
+  { name: "Buggy", position: "PR Manager" },
+  { name: "Koby", position: "Junior Analyst" },
+  { name: "Smoker", position: "Product Lead" },
+];
+
+export const messages = [
+  "This partnership has effectively redefined our identity.",
+  "Working together boosted creativity and innovation.",
+  "The project exceeded expectations in every way.",
+  "Collaboration has been seamless and inspiring.",
+  "We achieved results faster than anticipated.",
+  "A wonderful synergy between both teams.",
+  "Truly a groundbreaking experience.",
+  "The alignment with core values is impressive.",
+  "Innovation and trust were at the heart of this.",
+  "Exceeded benchmarks in product quality.",
 ];

@@ -8,8 +8,8 @@ const services = [
     id: "01",
     title: "Strategy",
     desc: "Clear, actionable plans to align business vision with long-term goals and measurable success.",
-    service_image: "/assets/images/big-img-2.avif",
-    avatar: "/assets/images/client-1.avif",
+    service_image: "/assets/images/img1.jpg",
+    avatar: "/assets/images/img1.jpg",
     quote:
       "We are committed to delivering exceptional results through our strategic approach.",
   },
@@ -17,8 +17,8 @@ const services = [
     id: "02",
     title: "Brand Identity",
     desc: "Memorable designs that capture the essence of your brand and connect with your audience.",
-    service_image: "/assets/images/big-img-2.avif",
-    avatar: "/assets/images/client-1.avif",
+    service_image: "/assets/images/img3.jpg",
+    avatar: "/assets/images/img12.jpg",
     quote:
       "We are committed to delivering exceptional results through our strategic approach.",
   },
@@ -26,8 +26,8 @@ const services = [
     id: "03",
     title: "Web Design",
     desc: "Beautiful, user-friendly websites that create seamless experiences and elevate your business.",
-    service_image: "/assets/images/big-img-2.avif",
-    avatar: "/assets/images/client-1.avif",
+    service_image: "/assets/images/img5.jpg",
+    avatar: "/assets/images/img10.jpg",
     quote:
       "We are committed to delivering exceptional results through our strategic approach.",
   },
@@ -35,8 +35,8 @@ const services = [
     id: "04",
     title: "Web Development",
     desc: "Webflow/Framer sites designed to grow with your business and perform at the highest level.",
-    service_image: "/assets/images/big-img-2.avif",
-    avatar: "/assets/images/client-2.avif",
+    service_image: "/assets/images/img7.jpg",
+    avatar: "/assets/images/img8.jpg",
     quote:
       "We are committed to delivering exceptional results through our strategic approach.",
   },
@@ -44,8 +44,8 @@ const services = [
     id: "05",
     title: "Web Apps",
     desc: "Custom applications tailored to streamline operations and enhance user engagement.",
-    service_image: "/assets/images/test3.jpg",
-    avatar: "/assets/images/client-1.avif",
+    service_image: "/assets/images/img9.jpg",
+    avatar: "/assets/images/img6.jpg",
     quote:
       "We are committed to delivering exceptional results through our strategic approach.",
   },
@@ -53,8 +53,8 @@ const services = [
     id: "06",
     title: "UI/UX",
     desc: "User-centered designs that enhance usability, streamline interactions, and elevate experience.",
-    service_image: "/assets/images/test4.jpg",
-    avatar: "/assets/images/client-2.avif",
+    service_image: "/assets/images/img11.jpg",
+    avatar: "/assets/images/img4.jpg",
     quote:
       "We are committed to delivering exceptional results through our strategic approach.",
   },
@@ -62,8 +62,8 @@ const services = [
     id: "07",
     title: "Pitch Decks",
     desc: "Compelling presentations that tell your story, showcase value, and captivate investors.",
-    service_image: "/assets/images/new.jpg",
-    avatar: "/assets/images/client-1.avif",
+    service_image: "/assets/images/img15.jpg",
+    avatar: "/assets/images/img2.jpg",
     quote:
       "We are committed to delivering exceptional results through our strategic approach.",
   },
@@ -71,8 +71,8 @@ const services = [
     id: "08",
     title: "Illustrations",
     desc: "Unique and engaging visuals that enhance storytelling, captivate audiences, and bring ideas to life.",
-    service_image: "/assets/images/test4.jpg",
-    avatar: "/assets/images/client-1.avif",
+    service_image: "/assets/images/img2.jpg",
+    avatar: "/assets/images/img2.jpg",
     quote:
       "We are committed to delivering exceptional results through our strategic approach.",
   },
@@ -99,7 +99,6 @@ const Services = () => {
   return (
     <section className="mb-[20rem] px-[1rem] lg:px-[1rem]" id="services">
       <Heading
-        className="text-[364.471px] leading-[0.8em]"
         heading="Services"
         subheading={[
           "Strategy",

@@ -1,6 +1,8 @@
 "use client";
 import Heading from "@/components/heading";
 import gsap from "gsap";
+import { ChevronsDown } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 const awards = [
@@ -165,7 +167,7 @@ const AwardList = () => {
     });
 
     const img = document.createElement("img");
-    img.src = `/assets/images/test${index + 1}.jpg`;
+    img.src = `/assets/images/img${index + 1}.jpg`;
     Object.assign(img.style, {
       position: "absolute",
       top: 0,
@@ -239,7 +241,7 @@ const AwardList = () => {
 const Work = () => {
   return (
     <section
-      className="w-full relative h-full max-w-full px-[1rem]  lg:px-[1rem] mb-[-0.5rem]"
+      className="w-full relative h-full max-w-full px-[1rem]  lg:px-[1rem] lg:mb-[-0.5rem] lg:pb-20"
       id="work"
     >
       <Heading
@@ -248,6 +250,13 @@ const Work = () => {
       />
 
       <AwardList />
+
+      <Link className="flex justify-end items-end" href="/all-projects">
+        <h3 className="uppercase text-2xl font-bold text-[#e3e3db] flex flex-row items-center gap-3">
+          show me all
+          <ChevronsDown size={20} />
+        </h3>
+      </Link>
     </section>
   );
 };

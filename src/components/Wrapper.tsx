@@ -1,235 +1,311 @@
 "use client";
 import BlockReveal from "@/components/animation/BlockReveal";
-import { Header } from "@/components/shared";
+// import { Header } from "@/components/shared";
 import { ChildProps } from "@/utils/types";
 import { ReactLenis } from "@studio-freight/react-lenis";
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { CustomEase } from "gsap/dist/CustomEase";
+import Image from "next/image";
+import Link from "next/link";
+import { Header } from "@/components/shared";
+
+gsap.registerPlugin(CustomEase);
 
 type SplitTextOptions = {
-  type?: "chars" | "words" | "lines" | ("chars" | "words" | "lines")[];
+  type: "chars" | "words" | "lines";
+  charsClass?: string;
+  wordsClass?: string;
+  linesClass?: string;
+  mask?: string;
 };
 
-class SplitText {
+export class SplitText {
   element: HTMLElement;
-  options: SplitTextOptions;
-  originalHTML: string;
-  text: string;
-  chars: HTMLElement[];
-  words: HTMLElement[];
-  lines: HTMLElement[];
+  type: "chars" | "words" | "lines";
+  result: HTMLElement[] = [];
 
-  constructor(element: HTMLElement, options = {}) {
-    this.element = element;
-    this.options = options;
-
-    this.originalHTML = this.element.innerHTML;
-    this.text = this.element.textContent?.trim() || "";
-
-    this.chars = [];
-    this.words = [];
-    this.lines = [];
-
-    this.split();
+  chars: HTMLElement[] = [];
+  words: HTMLElement[] = [];
+  lines: HTMLElement[] = [];
+  constructor(selector: string, options: SplitTextOptions) {
+    const el = document.querySelector(selector);
+    if (!el) throw new Error(`Element not found: ${selector}`);
+    this.element = el as HTMLElement;
+    this.type = options.type;
+    this.split(options);
   }
 
-  split() {
-    const { type = "chars" } = this.options;
-    this.element.innerHTML = "";
-
-    if (type.includes("chars")) this.splitChars();
-    if (type.includes("words")) this.splitWords();
-    if (type.includes("lines")) this.splitLines();
+  static create(selector: string, options: SplitTextOptions) {
+    return new SplitText(selector, options);
   }
 
-  splitChars() {
-    this.text.split("").forEach((char) => {
-      const wrapper = document.createElement("span");
-      wrapper.className = "char-wrapper";
+  private split(options: SplitTextOptions) {
+    const { type } = options;
+    const text = this.element.textContent || "";
+    this.element.textContent = "";
 
-      const span = document.createElement("span");
-      span.className = "char";
-      span.textContent = char === " " ? "\u00A0" : char;
+    if (type === "chars") {
+      const chars = [...text].map((char) => {
+        const mask = document.createElement("div");
+        mask.classList.add("char-mask");
+        mask.style.overflow = "hidden";
+        mask.style.display = "inline-block";
 
-      wrapper.appendChild(span);
-      this.element.appendChild(wrapper);
+        const span = document.createElement("span");
+        span.classList.add(options.charsClass || "char");
+        span.textContent = char === " " ? "\u00A0" : char;
 
-      this.chars.push(span);
-    });
-  }
+        mask.appendChild(span);
+        this.element.appendChild(mask);
 
-  splitWords() {
-    this.text.split(" ").forEach((word, i, arr) => {
-      const span = document.createElement("span");
-      span.className = "word";
-      span.textContent = word;
-      this.element.appendChild(span);
-      this.words.push(span);
+        return span;
+      });
+      this.result = chars;
+      this.chars = chars;
+    }
 
-      if (i < arr.length - 1)
-        this.element.appendChild(document.createTextNode(" "));
-    });
-  }
+    if (type === "words") {
+      const words = text.split(" ").map((word, i) => {
+        const span = document.createElement("span");
+        span.classList.add(options.wordsClass || "word");
+        span.textContent = word;
+        this.element.appendChild(span);
+        if (i !== text.split(" ").length - 1)
+          this.element.appendChild(document.createTextNode(" "));
+        return span;
+      });
+      this.result = words;
+      this.words = words;
+    }
 
-  splitLines() {
-    const lines = this.text.split(/\n/);
-    lines.forEach((line) => {
-      const wrapper = document.createElement("div");
-      wrapper.className = "line-wrapper";
-
-      const div = document.createElement("div");
-      div.className = "line";
-      div.textContent = line;
-
-      wrapper.appendChild(div);
-      this.element.appendChild(wrapper);
-
-      this.lines.push(div);
-    });
-  }
-
-  revert() {
-    this.element.innerHTML = this.originalHTML;
-  }
-
-  static create(element: HTMLElement, options: SplitTextOptions) {
-    return new SplitText(element, options);
+    if (type === "lines") {
+      // Giả lập split theo dòng (dùng CSS để wrap)
+      const lines = text.split(/\n/).map((line) => {
+        const div = document.createElement("div");
+        div.classList.add(options.linesClass || "line");
+        div.textContent = line;
+        this.element.appendChild(div);
+        return div;
+      });
+      this.result = lines;
+      this.lines = lines;
+    }
   }
 }
-
+type SplitType = "chars" | "words" | "lines";
 const Wrapper = ({ children }: ChildProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
-  const logoRef = useRef<HTMLHeadingElement>(null);
-  const footerRef = useRef<HTMLParagraphElement>(null);
+  const preloaderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!logoRef.current || !footerRef.current) return;
+    CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
-    const splitElements = [
-      { key: "logoChars", element: logoRef.current, type: "chars" as const },
-      {
-        key: "footerLines",
-        element: footerRef.current,
-        type: "lines" as const,
-      },
-    ];
-
-    type SplitKeys = "logoChars" | "footerLines";
-    const splits: Partial<Record<SplitKeys, SplitText>> = {};
-    splitElements.forEach(({ key, element, type }) => {
-      splits[key as SplitKeys] = SplitText.create(element, { type });
-    });
-
-    if (splits.logoChars) {
-      gsap.set(splits.logoChars.chars, { x: "100%" });
-    }
-    if (splits.footerLines) {
-      gsap.set(splits.footerLines.lines, { y: "100%" });
-    }
-
-    function animateProgress(duration = 4) {
-      const tl = gsap.timeline();
-      const counterSteps = 5;
-      let currentProgress = 0;
-
-      for (let i = 0; i < counterSteps; i++) {
-        const finalStep = i === counterSteps - 1;
-        const targetProgress = finalStep
-          ? 1
-          : Math.min(currentProgress + Math.random() * 0.3 + 0.1, 0.9);
-        currentProgress = targetProgress;
-
-        tl.to(".preloader-progress-bar", {
-          scaleX: targetProgress,
-          duration: duration / counterSteps,
-          ease: "power2.out",
-        });
+    const createSplit = (
+      selector: string,
+      type: SplitType,
+      className?: string
+    ) => {
+      const el = document.querySelector(selector);
+      if (!el) {
+        console.warn(`⚠️ SplitText skipped: element not found (${selector})`);
+        return { chars: [], words: [], lines: [] };
       }
 
-      return tl;
-    }
+      // Nếu không truyền className → dùng mặc định bằng type
+      const finalClass = className || type.slice(0, -1); // "chars" → "char", "lines" → "line"
 
-    const tl = gsap.timeline({ delay: 0.5 });
-
-    if (splits.logoChars) {
-      tl.to(splits.logoChars.chars, {
-        x: "0%",
-        stagger: 0.05,
-        duration: 1,
-        ease: "power4.inOut",
+      return SplitText.create(selector, {
+        type,
+        [`${type}Class`]: finalClass,
+        mask: type,
       });
-    }
-    if (splits.footerLines) {
-      tl.to(
-        splits.footerLines.lines,
-        {
-          y: "0%",
-          stagger: 0.05,
-          duration: 1,
-          ease: "power4.inOut",
-        },
-        "0.25"
-      );
-    }
-    tl.add(animateProgress(), "<").set(".preloader-progress", {
-      backgroundColor: "var(--base-300)",
+    };
+
+    const splitPreloaderHeader = createSplit(
+      ".preloader-header a",
+      "chars",
+      "char"
+    );
+    const splitPreloaderCopy = createSplit(
+      ".preloader-copy p",
+      "lines",
+      "line"
+    );
+
+    const chars = splitPreloaderHeader.chars;
+    const lines = splitPreloaderCopy.lines;
+    const initialChar = chars[0];
+    const lastChar = chars[chars.length - 1];
+
+    chars.forEach((char: HTMLElement, index: number) => {
+      gsap.set(char, { yPercent: index % 2 === 0 ? -100 : 100 });
     });
-    if (splits.logoChars) {
+    gsap.set(lines, { yPercent: 100 });
+
+    const preloaderImages = gsap.utils.toArray(".preloader-images .image");
+    const preloaderImagesInner = gsap.utils.toArray(
+      ".preloader-images .image img"
+    );
+
+    const tl = gsap.timeline({ delay: 0.25 });
+
+    tl.to(".progress-bar", {
+      scaleX: 1,
+      duration: 4,
+      ease: "power3.inOut",
+    })
+      .set(".progress-bar", { transformOrigin: "right" })
+      .to(".progress-bar", {
+        scaleX: 0,
+        duration: 1,
+        ease: "power3.in",
+      });
+
+    preloaderImages.forEach((preloaderImg: any, index: number) => {
       tl.to(
-        splits.logoChars.chars,
+        preloaderImg,
         {
-          x: "-100%",
-          stagger: 0.05,
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 100% , 0% 100%)",
           duration: 1,
-          ease: "power4.inOut",
+          ease: "hop",
+          delay: index * 0.75,
         },
-        "-=0.5"
+        "-=5"
       );
-    }
-    if (splits.footerLines) {
+    });
+
+    preloaderImagesInner.forEach((preloaderImageInner: any, index: number) => {
       tl.to(
-        splits.footerLines.lines,
-        {
-          y: "-100%",
-          stagger: 0.1,
-          duration: 1,
-          ease: "power4.inOut",
-        },
-        "<"
-      );
-    }
-    tl.to(
-      ".preloader-progress",
-      {
-        opacity: 0,
-        duration: 0.5,
-        ease: "power3.out",
-      },
-      "-=0.25"
-    )
-      .to(
-        ".preloader-mask",
-        {
-          scale: 5,
-          duration: 2.5,
-          ease: "power3.out",
-        },
-        "<"
-      )
-      .to(
-        ".contained",
+        preloaderImageInner,
         {
           scale: 1,
           duration: 1.5,
-          ease: "power3.out",
+          ease: "hop",
+          delay: index * 0.75,
         },
-        "<"
+        "-=5.25"
       );
+    });
+
+    tl.to(
+      lines,
+      {
+        yPercent: 0,
+        duration: 2,
+        ease: "hop",
+        stagger: 0.1,
+      },
+      "-=5.5"
+    );
+
+    tl.to(
+      chars,
+      {
+        yPercent: 0,
+        duration: 1,
+        ease: "hop",
+        stagger: 0.025,
+      },
+      "-=5"
+    );
+
+    tl.to(
+      ".preloader-images",
+      {
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 0% , 0% 0%)",
+        duration: 1,
+        ease: "hop",
+      },
+      "-=1.5"
+    );
+
+    tl.to(
+      lines,
+      {
+        y: "-125%",
+        duration: 2,
+        ease: "hop",
+        stagger: 0.1,
+      },
+      "-=2"
+    );
+
+    tl.to(
+      chars,
+      {
+        yPercent: (index: number) => {
+          if (index === 0 || index === chars.length - 1) return 0;
+          return index % 2 === 0 ? 100 : -100;
+        },
+        duration: 1,
+        ease: "hop",
+        stagger: 0.025,
+        delay: 0.5,
+        onStart: () => {
+          const initialCharMask = initialChar.parentElement;
+          const lastCharMask = lastChar.parentElement;
+
+          if (initialCharMask?.classList.contains("char-mask"))
+            initialCharMask.style.overflow = "visible";
+          if (lastCharMask?.classList.contains("char-mask"))
+            lastCharMask.style.overflow = "visible";
+
+          const viewportWidth = window.innerWidth;
+          const centerX = viewportWidth / 2;
+          const initialCharRect = initialChar.getBoundingClientRect();
+          const lastCharRect = lastChar.getBoundingClientRect();
+
+          gsap.to([initialChar, lastChar], {
+            duration: 1,
+            ease: "hop",
+            delay: 0.5,
+            x: (i) =>
+              i === 0
+                ? centerX - initialCharRect.left - initialCharRect.width
+                : centerX - lastCharRect.left,
+            onComplete: () => {
+              gsap.set(".preloader-header", { mixBlendMode: "difference" });
+              gsap.to(".preloader-header", {
+                y: "2rem",
+                scale: 0.35,
+                duration: 1.75,
+                ease: "hop",
+              });
+            },
+          });
+        },
+      },
+      "-=2.5"
+    );
+
+    tl.to(
+      ".preloader",
+      {
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 0% , 0% 0%)",
+        duration: 1.75,
+        ease: "hop",
+      },
+      "-=0.5"
+    );
+    tl.to(
+      ".contained",
+      {
+        scale: 1,
+        duration: 1.5,
+        ease: "power3.out",
+      },
+      "<"
+    );
+
+    return () => {
+      tl.kill();
+    };
   }, []);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 9000);
+    const timer = setTimeout(() => setIsLoading(false), 5900);
     document.body.style.overflow = isLoading ? "hidden" : "auto";
     return () => {
       clearTimeout(timer);
@@ -240,30 +316,65 @@ const Wrapper = ({ children }: ChildProps) => {
   return (
     <div className="relative w-full">
       {isLoading && (
-        <div className="fixed top-0 left-0 w-full h-svh pointer-events-none z-[99999]">
-          <div className="preloader-progress">
-            <div className="preloader-progress-bar" />
-            <div className="preloader-logo">
-              <h1
-                ref={logoRef}
-                className="relative text-[#f5f5f5] text-[3rem] font-medium leading-[1] uppercase"
-              >
-                Thien Duc
-              </h1>
+        <div ref={preloaderRef} className="preloader">
+          <div className="progress-bar" />
+
+          <div className="preloader-images">
+            <div className="image">
+              <Image
+                src="/assets/images/img6.jpg"
+                alt=""
+                width={400}
+                height={400}
+                className="object-cover w-full h-full scale-[1.2]"
+              />
+            </div>
+            <div className="image">
+              <Image
+                src="/assets/images/img7.jpg"
+                alt=""
+                width={400}
+                height={400}
+                className="object-cover w-full h-full scale-[1.2]"
+              />
+            </div>
+            <div className="image">
+              <Image
+                src="/assets/images/img8.jpg"
+                alt=""
+                width={400}
+                height={400}
+                className="object-cover w-full h-full scale-[1.2]"
+              />
+            </div>
+            <div className="image">
+              <Image
+                src="/assets/images/img9.jpg"
+                alt=""
+                width={400}
+                height={400}
+                className="object-cover w-full h-full scale-[1.2]"
+              />
             </div>
           </div>
 
-          <div className="preloader-mask" />
-          <div className="preloader-content">
-            <div className="preloader-footer">
-              <p ref={footerRef} className="text-[#f5f5f5] opacity-[0.5]">
-                Space unfold in light and shadow, where structure finds its
-                quiet rhythm, and time align in harmony.
-              </p>
-            </div>
+          <div className="preloader-copy ">
+            <p className="text-[0.8rem] font-medium uppercase text-[#ebe5d9] text-center">
+              A visual storyteller focused on shaping timeless fashion
+              narratives through bold composition and refined tone.
+            </p>
           </div>
         </div>
       )}
+      {/* Tôi đã cho nó ra ngoài nó hiển thị */}
+      <div className="preloader-header">
+        <Link
+          href="/"
+          className="uppercase text-[7.5rem] font-semibold leading-[0.9] text-[#ebe5d9] block font-NeuroX tracking-wider"
+        >
+          tran thien duc
+        </Link>
+      </div>
 
       <ReactLenis root options={{ lerp: 0.1, duration: 1.5 }}>
         <Header />

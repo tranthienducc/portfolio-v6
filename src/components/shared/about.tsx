@@ -1,5 +1,8 @@
+"use client";
 import Heading from "@/components/heading";
 import Image from "next/image";
+import gsap from "gsap";
+import { useEffect } from "react";
 
 const About = () => {
   return (
@@ -19,24 +22,6 @@ const About = () => {
         ]}
       />
 
-      <div className="flex flex-row gap-10 mx-[20%] my-12">
-        <Image
-          className="w-[479.61px] h-[479.61px] rounded-md"
-          src="/assets/images/img7.jpg"
-          loading="lazy"
-          alt="img-testimonials"
-          width={479.61}
-          height={479.61}
-        />
-        <Image
-          className="w-[479.61px] h-[479.61px] rounded-md"
-          src="/assets/images/img2.jpg"
-          loading="lazy"
-          alt="img-testimonials"
-          width={479.61}
-          height={479.61}
-        />
-      </div>
       <Information />
     </section>
   );

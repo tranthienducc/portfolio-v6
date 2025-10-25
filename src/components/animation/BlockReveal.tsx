@@ -24,7 +24,7 @@ const BlockReveal = ({ children }: ChildProps) => {
 
       for (let i = 0; i < 20; i++) {
         const block = document.createElement("div");
-        block.className = "block";
+        block.className = "blocks";
         overlayRef.current.appendChild(block);
         blockRef.current.push(block);
       }
